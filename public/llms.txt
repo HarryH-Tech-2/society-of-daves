@@ -1,0 +1,27 @@
+# The Society of Daves
+
+> A parody members' club for people called Dave, with accurate information about the name Dave/David. Membership costs $1 a month and includes The Dave Dispatch, a monthly email newsletter about the name Dave.
+
+Key facts:
+- Dave is short for David, from the Hebrew Dawid, usually translated as "beloved".
+- David was the most popular US boys' name in 1960 (85,929 births, SSA data). It peaked in the 1950s and ranked 31st in 2024.
+- St David's Day, for the patron saint of Wales, is on 1 March.
+- Membership: $1/month via Stripe, cancel any time at https://societyofdaves.com/api/manage. Contact: hello@societyofdaves.com.
+- Gift memberships: $6 for 6 months or $12 for 12 months, paid once, delivered by email on Christmas Day or a chosen date: https://societyofdaves.com/gift
+
+## Pages
+- [Home](https://societyofdaves.com/): what the Society is, facts about the name Dave, notable Daves, membership
+- [Blog](https://societyofdaves.com/blog/)
+- [Gift membership](https://societyofdaves.com/gift): give 6 or 12 months of The Dave Dispatch, delivered on Christmas Day
+
+## Articles
+- [Gifts for Daves: 25 ideas for the Dave in your life](https://societyofdaves.com/blog/gifts-for-daves/): The best gifts for someone called Dave, sorted by type of Dave and by budget: music Daves, nature Daves, office Daves, Welsh Daves and the Dave who has everything.
+- [What does the name Dave mean? The origin of David, explained](https://societyofdaves.com/blog/what-does-the-name-dave-mean/): Dave is short for David, a Hebrew name usually translated as "beloved". Here is where the name comes from, how it spread, and how Dave became the default nickname.
+- [How popular is the name David? A century of Daves in numbers](https://societyofdaves.com/blog/how-popular-is-the-name-david/): About 3.7 million boys named David have been born in the US since 1880. The name peaked in the 1950s, was number one in 1960, and ranked 31st in 2024.
+- [Famous Daves: the most notable people called Dave and David](https://societyofdaves.com/blog/famous-daves/): From David Bowie and David Attenborough to Dave Grohl and Michelangelo's statue: the notable Daves in music, TV, film, art, sport and history.
+- [David in other languages: Dafydd, Davide, Dawud and more](https://societyofdaves.com/blog/david-in-other-languages/): How to say David around the world: Dafydd in Welsh, Dàibhidh in Scottish Gaelic, Davide in Italian, Dawid in Polish, Dawud in Arabic, Kawika in Hawaiian and more.
+- [St David's Day: what it is, when it is, and why every Dave should care](https://societyofdaves.com/blog/st-davids-day/): St David's Day is on 1 March. Here is who Saint David was, why the Welsh wear daffodils and leeks, what "do the little things" means, and how to celebrate.
+
+## Policies
+- [Privacy](https://societyofdaves.com/privacy)
+- [Terms](https://societyofdaves.com/terms)

@@ -1,0 +1,15 @@
+{
+  "name": "society-of-daves",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run build && wrangler pages dev",
+    "deploy": "wrangler pages deploy",
+    "test": "node --test",
+    "build": "node scripts/build.mjs",
+    "stripe:setup": "node scripts/stripe-setup.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

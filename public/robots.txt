@@ -1,0 +1,22 @@
+# Search engines and AI assistants are welcome. Everyone here is called Dave.
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /welcome
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://societyofdaves.com/sitemap.xml

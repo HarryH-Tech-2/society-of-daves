@@ -1,0 +1,45 @@
+<!doctype html>
+<!-- Template for blog cover images (1200x630), also used as each post's
+     social share image. Rendered by scripts/covers.sh with URL parameters:
+     ?title=...&top=HELLO&name=Dave -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Permanent+Marker&display=swap">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body { background: #EEF0F3; font-family: 'Archivo', sans-serif; position: relative; }
+  .wall { position: absolute; inset: -60px; display: flex; flex-wrap: wrap; align-items: center; gap: 0 18px; transform: rotate(-6deg); font-family: 'Permanent Marker', cursive; color: rgba(0,0,0,.065); font-size: 34px; line-height: 1.1; }
+  .wall span:nth-child(7n) { color: rgba(217,35,45,.15); }
+  .wall span:nth-child(3n) { font-size: 48px; }
+  .copy { position: absolute; left: 64px; top: 64px; bottom: 64px; width: 600px; display: flex; flex-direction: column; justify-content: space-between; }
+  .site { font-weight: 800; font-stretch: 112%; font-size: 26px; }
+  .site b { color: #D9232D; }
+  h1 { font-weight: 900; font-stretch: 82%; font-size: 68px; line-height: .98; letter-spacing: -.02em; margin: 0; }
+  .badge { position: absolute; right: 60px; top: 50%; width: 420px; margin-top: -170px; background: #D9232D; border-radius: 24px; padding: 0 14px; transform: rotate(-4deg); color: #fff; text-align: center; box-shadow: 0 26px 44px -20px rgba(40,10,10,.6); }
+  .hello { display: block; font-weight: 900; font-stretch: 125%; font-size: 60px; padding-top: 20px; line-height: 1; letter-spacing: .03em; white-space: nowrap; }
+  .sub { display: block; font-weight: 600; font-size: 22px; padding: 4px 0 12px; }
+  .name { background: #fff; color: #000; border-radius: 6px; height: 170px; display: grid; place-items: center; font-family: 'Permanent Marker', cursive; font-size: 92px; white-space: nowrap; overflow: hidden; }
+  .name span { transform: rotate(-2deg); }
+  .foot { height: 26px; }
+</style>
+</head>
+<body>
+  <div class="wall" id="wall"></div>
+  <div class="copy">
+    <div class="site">The Society of <b>Daves</b></div>
+    <h1 id="title"></h1>
+  </div>
+  <div class="badge"><span class="hello" id="top"></span><span class="sub">my name is</span><div class="name"><span id="name"></span></div><div class="foot"></div></div>
+  <script>
+    const p = new URLSearchParams(location.search);
+    document.getElementById('wall').innerHTML = '<span>Dave</span>'.repeat(400);
+    document.getElementById('title').textContent = p.get('title') || 'The Society of Daves';
+    document.getElementById('top').textContent = p.get('top') || 'HELLO';
+    const name = p.get('name') || 'Dave';
+    const el = document.getElementById('name');
+    el.textContent = name;
+    if (name.length > 7) el.parentElement.style.fontSize = `${Math.max(48, 92 - (name.length - 7) * 8)}px`;
+  </script>
+</body>
+</html>

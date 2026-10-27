@@ -1,0 +1,35 @@
+<!doctype html>
+<!-- Source for public/og.png (1200x630 social share image).
+     Regenerate: open this file in a browser at 1200x630 and save a screenshot as public/og.png. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Permanent+Marker&display=swap">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body { background: #EEF0F3; font-family: 'Archivo', sans-serif; position: relative; }
+  .wall { position: absolute; inset: -60px; display: flex; flex-wrap: wrap; gap: 0 18px; transform: rotate(-6deg); font-family: 'Permanent Marker', cursive; color: rgba(0,0,0,.07); font-size: 34px; line-height: 1.1; }
+  .wall span:nth-child(7n) { color: rgba(217,35,45,.16); }
+  .wall span:nth-child(3n) { font-size: 48px; }
+  .copy { position: absolute; left: 70px; top: 120px; width: 520px; }
+  h1 { font-weight: 900; font-stretch: 85%; font-size: 76px; line-height: .96; letter-spacing: -.02em; margin: 0 0 22px; }
+  p { font-size: 30px; margin: 0; font-weight: 600; }
+  p b { color: #D9232D; }
+  .badge { position: absolute; right: 70px; top: 95px; width: 470px; background: #D9232D; border-radius: 26px; padding: 0 16px; transform: rotate(-3deg); color: #fff; text-align: center; box-shadow: 0 26px 44px -20px rgba(40,10,10,.6); }
+  .hello { display: block; font-weight: 900; font-stretch: 125%; font-size: 72px; padding-top: 22px; line-height: 1; letter-spacing: .04em; }
+  .sub { display: block; font-weight: 600; font-size: 24px; padding: 4px 0 14px; }
+  .name { background: #fff; color: #000; border-radius: 6px; height: 190px; display: grid; place-items: center; font-family: 'Permanent Marker', cursive; font-size: 120px; }
+  .name span { transform: rotate(-2deg); }
+  .foot { height: 30px; }
+</style>
+</head>
+<body>
+  <div class="wall" id="wall"></div>
+  <div class="copy">
+    <h1>The Society of Daves</h1>
+    <p>There are a lot of you. <b>Join for $1 a month.</b></p>
+  </div>
+  <div class="badge"><span class="hello">HELLO</span><span class="sub">my name is</span><div class="name"><span>Dave</span></div><div class="foot"></div></div>
+  <script>document.getElementById('wall').innerHTML = '<span>Dave</span>'.repeat(400);</script>
+</body>
+</html>
