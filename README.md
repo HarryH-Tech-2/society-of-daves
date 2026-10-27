@@ -9,17 +9,19 @@ content/posts.mjs       Blog posts (edit these, then `npm run build`)
 scripts/build.mjs       Generates the blog, sitemap, RSS, llms.txt and parts of index.html
 scripts/site.mjs        Shared header/footer/chart templates for generated pages
 scripts/og.html         Source for public/og.png (the social share image)
-public/                 Static site (Cloudflare Pages serves this)
+public/                 Static site (Vercel serves this; vercel.json sets the build)
   index.html            Landing page (regions marked <!-- build:... --> are generated)
   blog/                 Generated: blog index + one folder per post
   sitemap.xml, rss.xml, llms.txt   Generated
   robots.txt            Allows search engines and AI crawlers, points to the sitemap
   welcome.html          Shown after a successful payment (/welcome)
   privacy.html, terms.html
-functions/api/          Cloudflare Pages Functions (server side)
+api/                    Vercel Functions (server side)
   checkout.js           POST /api/checkout      -> creates a Stripe Checkout session, redirects to Stripe
+  gift-checkout.js      POST /api/gift-checkout -> creates a one-off gift payment
   stripe-webhook.js     POST /api/stripe-webhook -> Stripe events -> Resend list + welcome email
   manage.js             GET  /api/manage        -> redirects to Stripe's customer portal
+  cron/daily.js         POST /api/cron/daily    -> delivers and ends gift memberships
 lib/                    The logic behind those functions (tested in test/)
 ```
 
@@ -30,30 +32,34 @@ Separately, Stripe calls `/api/stripe-webhook`:
 
 ## Setup checklist
 
-### 1. Domain
-Register `societyofdaves.com`. Cloudflare Registrar is the simplest option because the DNS will live there anyway.
+### 1. Domain (Namecheap)
+Register `societyofdaves.com` on Namecheap. Point it at Vercel in step 4. The Resend DNS records also go in Namecheap (**Domain List → Manage → Advanced DNS**).
 
 ### 2. Stripe
 1. Create a Stripe account and finish activation (business details, bank account).
-2. **Developers → API keys**: copy the secret key into `.dev.vars` as `STRIPE_SECRET_KEY` (copy `.dev.vars.example` first). Use the test-mode key (`sk_test_`) until everything works.
+2. **Developers → API keys**: copy the secret key into `.env.local` as `STRIPE_SECRET_KEY` (copy `.env.example` first). Use the test-mode key (`sk_test_`) until everything works.
 3. Run **`npm run stripe:setup`**. It creates the $1/month membership price, the $6 and $12 gift prices and the customer portal, then prints `STRIPE_PRICE_ID`, `STRIPE_GIFT_PRICE_6`, `STRIPE_GIFT_PRICE_12` and `STRIPE_PORTAL_URL`. Running it again is safe.
 4. Once the site is live, run **`npm run stripe:setup -- --webhook`** to create the webhook for `https://societyofdaves.com/api/stripe-webhook` and print `STRIPE_WEBHOOK_SECRET`.
-5. When you switch to live mode, put the `sk_live_` key in `.dev.vars` and run steps 3 and 4 again. Live mode has its own prices, portal and webhook.
+5. When you switch to live mode, put the `sk_live_` key in `.env.local` and run steps 3 and 4 again. Live mode has its own prices, portal and webhook.
 6. Optional: under **Settings → Payments**, turn on Apple Pay and Google Pay. They make a $1 impulse purchase much easier on phones.
 
 ### 3. Resend
-1. **Domains → Add domain**: `societyofdaves.com`. Add the DNS records it gives you in Cloudflare. The free plan allows 3 domains.
+1. **Domains → Add domain**: `societyofdaves.com`. Add the DNS records it gives you in Namecheap's Advanced DNS. The free plan allows 3 domains.
 2. **API keys → Create**: full access (the key needs contacts as well as sending) → `RESEND_API_KEY`.
 3. Optional: create a segment called "Members" and put its ID in `RESEND_SEGMENT_ID`, so Broadcasts can target paying members only.
 4. Send The Dave Dispatch each month from **Broadcasts**. Resend adds the unsubscribe link for you.
 
 Free plan limits to keep an eye on: 1,000 marketing contacts and 100 transactional emails a day. That's fine until a campaign brings in more than about 100 sign-ups in a day, or the list passes 1,000 members. Pro is $20/month.
 
-### 4. Cloudflare Pages
-1. Push this folder to a GitHub repo, then in Cloudflare **Workers & Pages → Create → Pages → Connect to Git**. Set the build command to `npm run build` and the output directory to `public`.
-   Or deploy straight from your machine: `npm install`, then `npx wrangler login`, then `npm run deploy`.
-2. **Settings → Variables and Secrets**: add the secrets listed in `wrangler.toml`.
-3. **Custom domains**: add `societyofdaves.com` (and `www`).
+### 4. Vercel
+1. In Vercel, **Add New → Project** and import the GitHub repo. `vercel.json` already sets the build command (`npm run build`), the output directory (`public`) and clean URLs (`/welcome` serves `welcome.html`). Leave the framework preset as "Other".
+   Or deploy straight from your machine: `npx vercel login`, then `npm run deploy`.
+2. **Settings → Environment Variables**: add `SITE_URL` (`https://societyofdaves.com`), `EMAIL_FROM`, `STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID`, `STRIPE_GIFT_PRICE_6`, `STRIPE_GIFT_PRICE_12`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PORTAL_URL`, `RESEND_API_KEY`, `RESEND_SEGMENT_ID` (optional) and `CRON_SECRET`. Redeploy after changing them, because a deployment only sees the variables that existed when it was built.
+3. **Settings → Domains**: add `societyofdaves.com` and `www.societyofdaves.com`, with one redirecting to the other. Then in Namecheap **Advanced DNS**, delete the parking records and add:
+   - `A` record, host `@`, value `76.76.21.21`
+   - `CNAME` record, host `www`, value `cname.vercel-dns.com.`
+
+   If Vercel shows different values, use those. HTTPS turns on by itself once Vercel shows "Valid Configuration".
 
 ### 5. Test it end to end (Stripe test mode)
 1. Pay with card `4242 4242 4242 4242`, any future expiry date and any CVC.
@@ -65,12 +71,12 @@ Free plan limits to keep an eye on: 1,000 marketing contacts and 100 transaction
 
 ```
 npm install
-cp .dev.vars.example .dev.vars    # fill in test keys
-npm run dev                       # http://localhost:8788
+cp .env.example .env.local        # fill in test keys
+npm run dev                       # http://localhost:3000 (Vercel CLI; asks you to log in and link the project the first time)
 npm test
 ```
 
-To get webhooks on your machine: `stripe listen --forward-to localhost:8788/api/stripe-webhook` (Stripe CLI). Put the `whsec_` it prints in `.dev.vars`.
+To get webhooks on your machine: `stripe listen --forward-to localhost:3000/api/stripe-webhook` (Stripe CLI). Put the `whsec_` it prints in `.env.local`.
 
 ## Gift memberships (Christmas)
 
@@ -82,7 +88,7 @@ How it works:
 3. **A daily job** (`/api/cron/daily`, run by `.github/workflows/daily.yml` at 07:00 UTC) delivers gifts that are due, including all Christmas Day gifts. It also ends gifts that have run out: it unsubscribes the recipient and emails them an invitation to join for $1 a month. It never removes someone who has since become a paying member.
 
 Setup:
-- Make up a long random string and add it as `CRON_SECRET` in Cloudflare (secrets) **and** in GitHub (Settings → Secrets and variables → Actions). Also add `SITE_URL` (`https://societyofdaves.com`) as a GitHub secret.
+- Make up a long random string and add it as `CRON_SECRET` in Vercel (environment variables) **and** in GitHub (Settings → Secrets and variables → Actions). Also add `SITE_URL` (`https://societyofdaves.com`) as a GitHub secret.
 - The daily job runs from GitHub Actions, so the code must be in a GitHub repo. You can trigger it by hand from the Actions tab ("Run workflow") to test it.
 - Test it in Stripe test mode: buy a gift with "Straight away" and check that both emails arrive. Then buy one with a date of tomorrow, and run the workflow by hand the next day.
 
@@ -115,6 +121,6 @@ For Google Ads conversion tracking, paste your Google tag into the `<head>` of `
 
 ## Before launch
 
-- [ ] Replace `hello@societyofdaves.com` if you'll use a different address, and make sure that inbox receives mail. Resend only sends; use Cloudflare Email Routing to forward it to your Gmail.
+- [ ] Replace `hello@societyofdaves.com` if you'll use a different address, and make sure that inbox receives mail. Resend only sends; use Namecheap's free email forwarding (**Domain → Redirect Email**) to forward it to your Gmail.
 - [ ] Have someone read `privacy.html` and `terms.html` for your country. They are sensible drafts, not legal advice.
 - [ ] Google Ads requires a visible price, cancellation terms and contact details. The landing page and footer cover all three.

@@ -2,7 +2,7 @@
 # (including Christmas Day gifts) and ends gifts that have run out.
 #
 # Setup: in GitHub, Settings > Secrets and variables > Actions, add
-#   CRON_SECRET  - the same value as the CRON_SECRET secret in Cloudflare
+#   CRON_SECRET  - the same value as the CRON_SECRET environment variable in Vercel
 #   SITE_URL     - https://societyofdaves.com
 
 name: Daily gift delivery
@@ -21,8 +21,8 @@ jobs:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
           SITE_URL: ${{ secrets.SITE_URL }}
         run: |
-          # Each call handles a small batch (Cloudflare's free plan limits
-          # requests per call), so repeat until nothing is left.
+          # Each call handles a small batch (to stay inside the hosting time
+          # limit), so repeat until nothing is left.
           for i in $(seq 1 60); do
             result=$(curl -sS --fail -X POST "$SITE_URL/api/cron/daily" -H "Authorization: Bearer $CRON_SECRET")
             echo "$result"

@@ -8,25 +8,25 @@
 // portal/webhook are only created if missing.
 //
 // Usage:
-//   node scripts/stripe-setup.mjs              (uses STRIPE_SECRET_KEY from .dev.vars)
+//   node scripts/stripe-setup.mjs              (uses STRIPE_SECRET_KEY from .env.local)
 //   node scripts/stripe-setup.mjs --webhook    (also creates the webhook for SITE_URL)
 
 import { readFile } from 'node:fs/promises';
 import { stripeRequest } from '../lib/stripe.js';
 
-async function loadDevVars() {
+async function loadEnvFile() {
   try {
-    const text = await readFile(new URL('../.dev.vars', import.meta.url), 'utf8');
+    const text = await readFile(new URL('../.env.local', import.meta.url), 'utf8');
     return Object.fromEntries(text.split('\n')
       .map((l) => l.trim()).filter((l) => l && !l.startsWith('#') && l.includes('='))
       .map((l) => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1)]));
   } catch { return {}; }
 }
 
-const vars = { ...(await loadDevVars()), ...process.env };
+const vars = { ...(await loadEnvFile()), ...process.env };
 const key = vars.STRIPE_SECRET_KEY;
 if (!key || !key.startsWith('sk_')) {
-  console.error('Put your Stripe secret key in .dev.vars as STRIPE_SECRET_KEY=sk_test_... and run again.');
+  console.error('Put your Stripe secret key in .env.local as STRIPE_SECRET_KEY=sk_test_... and run again.');
   process.exit(1);
 }
 const live = key.startsWith('sk_live_');
@@ -112,5 +112,5 @@ if (process.argv.includes('--webhook')) {
   }
 }
 
-console.log('\nAdd these to Cloudflare (Settings > Variables and Secrets) and to .dev.vars:\n');
+console.log('\nAdd these to Vercel (Settings > Environment Variables) and to .env.local:\n');
 for (const [k, v] of Object.entries(output)) if (v) console.log(`${k}=${v}`);
