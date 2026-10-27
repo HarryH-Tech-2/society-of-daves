@@ -14,6 +14,10 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+    try { if (localStorage.getItem('dave-cookies') === 'granted') gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' }); } catch (e) {}
+    gtag('set', 'url_passthrough', true);
+    gtag('set', 'ads_data_redaction', true);
     gtag('js', new Date());
     gtag('config', 'G-0WLED48Q40');
   </script>
@@ -32,7 +36,7 @@
       <li><strong>When you join:</strong> your email address, the first name you give us (optional), and your payment details. Payment details are collected and stored by Stripe, not by us.</li>
       <li><strong>When you buy a gift:</strong> your name and email, and the recipient's first name, email address and your message to them. We use the recipient's details only to deliver the gift and the newsletter, and we stop emailing them when the gift ends.</li>
       <li><strong>Advertising data:</strong> if you arrived from an ad, the ad click ID and campaign tags in the link, so we can tell which ads work.</li>
-      <li><strong>When you browse:</strong> standard server logs. If we use analytics or advertising tags, they may set cookies; see below.</li>
+      <li><strong>When you browse:</strong> standard server logs, and Google Analytics if you allow it. See <a href="#cookies">Cookies</a> below.</li>
     </ul>
 
     <h2>How we use it</h2>
@@ -48,8 +52,12 @@
       <li><strong>Stripe</strong> handles payments.</li>
       <li><strong>Resend</strong> stores our mailing list and sends our emails.</li>
       <li><strong>Vercel</strong> hosts this website.</li>
-      <li><strong>Google</strong> runs our ads and, if enabled, our analytics.</li>
+      <li><strong>Google</strong> runs our ads and our analytics.</li>
     </ul>
+
+    <h2 id="cookies">Cookies</h2>
+    <p>We ask before setting any cookies. If you say yes, Google Analytics and Google Ads set cookies that tell us how many people visit, which pages they read, and which adverts brought them here. If you say no, Google gets only cookieless signals that can't identify you, such as a page having been viewed, and nothing is stored on your device except your answer.</p>
+    <p>Your answer is saved in your browser so we don't ask again. Change it any time with <button type="button" class="link-button" data-cookie-settings>Cookie settings</button>, also at the bottom of every page.</p>
 
     <h2>Your choices</h2>
     <ul>
@@ -68,8 +76,10 @@
         <a href="/">Home</a>
         <a href="/terms">Terms</a>
         <a href="/api/manage">Manage membership</a>
+        <button type="button" data-cookie-settings>Cookie settings</button>
       </nav>
     </div>
   </footer>
+  <script src="/consent.js" defer></script>
 </body>
 </html>

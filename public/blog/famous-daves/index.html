@@ -30,6 +30,10 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+    try { if (localStorage.getItem('dave-cookies') === 'granted') gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' }); } catch (e) {}
+    gtag('set', 'url_passthrough', true);
+    gtag('set', 'ads_data_redaction', true);
     gtag('js', new Date());
     gtag('config', 'G-0WLED48Q40');
   </script>
@@ -202,10 +206,12 @@
         <a href="/terms">Terms</a>
         <a href="/api/manage">Manage membership</a>
         <a href="mailto:hello@societyofdaves.com">hello@societyofdaves.com</a>
+        <button type="button" data-cookie-settings>Cookie settings</button>
       </nav>
       <p>&copy; 2026 The Society of Daves. A parody, for fun. Not affiliated with any Dave, David, or TV channel mentioned on this site.</p>
     </div>
   </footer>
   <script src="/app.js" defer></script>
+  <script src="/consent.js" defer></script>
 </body>
 </html>

@@ -45,11 +45,17 @@ ${GOOGLE_TAG}`;
 
 // Google Analytics 4 (property "Society of Daves"). The hand-written pages in
 // public/ carry the same snippet; change the ID in both places.
+// Consent Mode: cookies stay off until the visitor says yes in the banner
+// (public/consent.js). A saved "yes" is applied here, before the config call.
 export const GA_ID = 'G-0WLED48Q40';
 export const GOOGLE_TAG = `  <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+    try { if (localStorage.getItem('dave-cookies') === 'granted') gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' }); } catch (e) {}
+    gtag('set', 'url_passthrough', true);
+    gtag('set', 'ads_data_redaction', true);
     gtag('js', new Date());
     gtag('config', '${GA_ID}');
   </script>`;
@@ -73,11 +79,13 @@ export const footer = () => `<footer class="footer">
         <a href="/terms">Terms</a>
         <a href="/api/manage">Manage membership</a>
         <a href="mailto:${SITE.email}">${SITE.email}</a>
+        <button type="button" data-cookie-settings>Cookie settings</button>
       </nav>
       <p>&copy; 2026 The Society of Daves. A parody, for fun. Not affiliated with any Dave, David, or TV channel mentioned on this site.</p>
     </div>
   </footer>
-  <script src="/app.js" defer></script>`;
+  <script src="/app.js" defer></script>
+  <script src="/consent.js" defer></script>`;
 
 export const joinCta = () => `<aside class="cta-band" aria-labelledby="cta-title">
   <div class="dave-wall" aria-hidden="true"></div>

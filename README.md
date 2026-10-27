@@ -72,7 +72,7 @@ Free plan limits to keep an eye on: 1,000 marketing contacts and 100 transaction
 ```
 npm install
 cp .env.example .env.local        # fill in test keys
-npm run dev                       # http://localhost:3000 (Vercel CLI; asks you to log in and link the project the first time)
+npm start                         # http://localhost:3000 (Vercel CLI; asks you to log in and link the project the first time)
 npm test
 ```
 

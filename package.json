@@ -6,7 +6,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "npm run build && npx vercel dev",
+    "start": "npm run build && npx vercel dev",
     "deploy": "npx vercel deploy --prod",
     "test": "node --test",
     "build": "node scripts/build.mjs",
