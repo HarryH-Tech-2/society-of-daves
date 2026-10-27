@@ -88,7 +88,7 @@ How it works:
 3. **A daily job** (`/api/cron/daily`, run by `.github/workflows/daily.yml` at 07:00 UTC) delivers gifts that are due, including all Christmas Day gifts. It also ends gifts that have run out: it unsubscribes the recipient and emails them an invitation to join for $1 a month. It never removes someone who has since become a paying member.
 
 Setup:
-- Make up a long random string and add it as `CRON_SECRET` in Vercel (environment variables) **and** in GitHub (Settings → Secrets and variables → Actions). Also add `SITE_URL` (`https://societyofdaves.com`) as a GitHub secret.
+- Make up a long random string and add it as `CRON_SECRET` in Vercel (environment variables) **and** in GitHub (Settings → Secrets and variables → Actions).
 - The daily job runs from GitHub Actions, so the code must be in a GitHub repo. You can trigger it by hand from the Actions tab ("Run workflow") to test it.
 - Test it in Stripe test mode: buy a gift with "Straight away" and check that both emails arrive. Then buy one with a date of tomorrow, and run the workflow by hand the next day.
 

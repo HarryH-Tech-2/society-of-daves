@@ -3,7 +3,6 @@
 #
 # Setup: in GitHub, Settings > Secrets and variables > Actions, add
 #   CRON_SECRET  - the same value as the CRON_SECRET environment variable in Vercel
-#   SITE_URL     - https://societyofdaves.com
 
 name: Daily gift delivery
 
@@ -19,7 +18,7 @@ jobs:
       - name: Deliver and expire gifts
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
-          SITE_URL: ${{ secrets.SITE_URL }}
+          SITE_URL: https://societyofdaves.com
         run: |
           # Each call handles a small batch (to stay inside the hosting time
           # limit), so repeat until nothing is left.
