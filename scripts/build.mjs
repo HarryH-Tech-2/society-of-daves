@@ -260,7 +260,9 @@ ${sorted.map((p) => `- [${p.title}](${SITE.url}/blog/${p.slug}/): ${p.descriptio
 function fillRegion(html, name, content) {
   const re = new RegExp(`(<!-- build:${name} -->)[\\s\\S]*?(<!-- /build:${name} -->)`);
   if (!re.test(html)) throw new Error(`index.html is missing the build:${name} markers`);
-  return html.replace(re, `$1\n${content}\n$2`);
+  // A replacer function, so "$1" in the content (the price!) isn't read as a
+  // back-reference.
+  return html.replace(re, (_, open, close) => `${open}\n${content}\n${close}`);
 }
 
 // Refreshes the generated regions of a hand-written page. The FAQ structured

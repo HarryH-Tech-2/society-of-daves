@@ -39,8 +39,20 @@ export function head({ title, description, path, ogType = 'website', image = '/o
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="${FONTS}">
   <link rel="stylesheet" href="/styles.css">
-${jsonLd.map((d) => `  <script type="application/ld+json">${JSON.stringify(d)}</script>`).join('\n')}`;
+${jsonLd.map((d) => `  <script type="application/ld+json">${JSON.stringify(d)}</script>`).join('\n')}
+${GOOGLE_TAG}`;
 }
+
+// Google Analytics 4 (property "Society of Daves"). The hand-written pages in
+// public/ carry the same snippet; change the ID in both places.
+export const GA_ID = 'G-0WLED48Q40';
+export const GOOGLE_TAG = `  <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${GA_ID}');
+  </script>`;
 
 export const header = () => `<a class="skip" href="#main">Skip to content</a>
   <header class="wrap masthead">

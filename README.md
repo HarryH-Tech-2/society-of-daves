@@ -117,7 +117,17 @@ After launch, add the site to Google Search Console and Bing Webmaster Tools, an
 
 The site already passes `gclid` and `utm_*` values from the ad click into Stripe metadata, on both the checkout session and the subscription, so every member can be traced to a campaign.
 
-For Google Ads conversion tracking, paste your Google tag into the `<head>` of `public/index.html`, `public/gift.html`, `public/welcome.html` and `public/gift-sent.html` (there's a placeholder comment in each). Fire a conversion with a value of 1 USD on `welcome.html`, and a separate "gift" conversion on `gift-sent.html` (6 or 12 USD). Gift payments also carry `gclid` and `utm_*` in their Stripe metadata.
+### Google Analytics 4
+
+Every page loads the GA4 tag for the "Society of Daves" property (`G-0WLED48Q40`). Generated pages get it from `GOOGLE_TAG` in `scripts/site.mjs`. The hand-written pages in `public/` have their own copy of the snippet, so if the ID changes, update both.
+
+Sales are recorded as GA4 `purchase` events. The Stripe session ID is used as the transaction ID, so refreshing the page doesn't count a sale twice:
+- `welcome.html` records a $1 membership.
+- `gift-sent.html` records a $6 or $12 gift. Stripe adds `plan=6` or `plan=12` to the return URL.
+
+### Google Ads
+
+Link Google Ads to the GA4 property (**GA4 Admin → Product links → Google Ads**). Then import the `purchase` key event as a conversion. There's no separate Ads tag to add. Gift payments also carry `gclid` and `utm_*` in their Stripe metadata.
 
 ## Before launch
 
