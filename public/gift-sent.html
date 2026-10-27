@@ -21,13 +21,13 @@
     gtag('set', 'ads_data_redaction', true);
     gtag('js', new Date());
     gtag('config', 'G-0WLED48Q40');
-    // A gift was bought: $6 for 6 months or $12 for 12 months.
+    // A gift was bought: $6/£6 for 6 months or $12/£12 for 12 months.
     (function () {
       var q = new URLSearchParams(location.search);
       var months = q.get('plan') === '6' ? 6 : 12;
       gtag('event', 'purchase', {
         transaction_id: q.get('session_id') || undefined,
-        value: months, currency: 'USD',
+        value: months, currency: q.get('cur') === 'gbp' ? 'GBP' : 'USD',
         items: [{ item_id: 'gift-' + months, item_name: months + '-month gift membership', price: months, quantity: 1 }],
       });
     })();
@@ -71,5 +71,6 @@
     </div>
   </footer>
   <script src="/consent.js" defer></script>
+  <script src="/currency.js" defer></script>
 </body>
 </html>

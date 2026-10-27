@@ -85,7 +85,8 @@ export const footer = () => `<footer class="footer">
     </div>
   </footer>
   <script src="/app.js" defer></script>
-  <script src="/consent.js" defer></script>`;
+  <script src="/consent.js" defer></script>
+  <script src="/currency.js" defer></script>`;
 
 export const joinCta = () => `<aside class="cta-band" aria-labelledby="cta-title">
   <div class="dave-wall" aria-hidden="true"></div>

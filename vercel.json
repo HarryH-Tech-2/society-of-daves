@@ -3,5 +3,13 @@
   "framework": null,
   "buildCommand": "npm run build",
   "outputDirectory": "public",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/badge/:name", "destination": "/api/share?name=:name" }
+  ],
+  "functions": {
+    "api/badge.js": {
+      "includeFiles": "node_modules/@fontsource/{permanent-marker,archivo}/files/*-latin-{400,700,800,900}-normal.woff"
+    }
+  }
 }

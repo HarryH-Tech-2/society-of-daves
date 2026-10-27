@@ -64,7 +64,7 @@
           <p class="fine">Cancel any time. Secure payment by Stripe.</p>
         </div>
 
-        <div class="badge-stage">
+        <div class="badge-stage" id="badge">
           <div class="badge" role="img" aria-label="A red name badge reading: Hello, my name is Dave">
             <span class="badge-hello" aria-hidden="true">HELLO</span>
             <span class="badge-sub" aria-hidden="true">my name is</span>
@@ -80,6 +80,12 @@
             <input id="name-input" name="name" type="text" maxlength="24" placeholder="Your first name" spellcheck="false">
             <output id="name-verdict" for="name-input" aria-live="polite"></output>
           </form>
+
+          <div class="badge-share">
+            <button class="share-button" type="button" id="badge-share">Share my badge</button>
+            <a class="share-button share-plain" id="badge-download" href="/api/badge?name=Dave&amp;download=1" download>Download</a>
+            <p class="share-status" id="badge-share-status" aria-live="polite"></p>
+          </div>
         </div>
       </section>
     </div>
@@ -516,5 +522,6 @@
 
   <script src="/app.js" defer></script>
   <script src="/consent.js" defer></script>
+  <script src="/currency.js" defer></script>
 </body>
 </html>

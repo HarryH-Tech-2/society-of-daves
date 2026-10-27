@@ -1,6 +1,6 @@
 // Sets up a Stripe account for the Society of Daves:
-//   - $1/month membership price
-//   - $6 and $12 one-off gift membership prices
+//   - $1/month membership price (with a £1 option for UK visitors)
+//   - $6 and $12 one-off gift membership prices (and £6, £12)
 //   - customer portal (cancel, update card, see invoices) with a login link
 //   - webhook endpoint for /api/stripe-webhook (only with --webhook)
 //
@@ -37,17 +37,17 @@ const PRICES = [
   {
     lookup_key: 'sod_membership_monthly', env: 'STRIPE_PRICE_ID',
     product: { name: 'Society of Daves membership', description: 'The Dave Dispatch, a monthly newsletter about the name Dave. Cancel any time.' },
-    price: { unit_amount: 100, currency: 'usd', recurring: { interval: 'month' } },
+    price: { unit_amount: 100, currency: 'usd', currency_options: { gbp: { unit_amount: 100 } }, recurring: { interval: 'month' } },
   },
   {
     lookup_key: 'sod_gift_6_months', env: 'STRIPE_GIFT_PRICE_6',
     product: { name: 'Society of Daves gift membership (6 months)', description: 'Six months of The Dave Dispatch, given as a gift. One payment, no renewal.' },
-    price: { unit_amount: 600, currency: 'usd' },
+    price: { unit_amount: 600, currency: 'usd', currency_options: { gbp: { unit_amount: 600 } } },
   },
   {
     lookup_key: 'sod_gift_12_months', env: 'STRIPE_GIFT_PRICE_12',
     product: { name: 'Society of Daves gift membership (12 months)', description: 'A year of The Dave Dispatch, given as a gift. One payment, no renewal.' },
-    price: { unit_amount: 1200, currency: 'usd' },
+    price: { unit_amount: 1200, currency: 'usd', currency_options: { gbp: { unit_amount: 1200 } } },
   },
 ];
 
@@ -57,10 +57,17 @@ console.log(`Stripe account: ${account.settings?.dashboard?.display_name || acco
 const output = {};
 
 for (const p of PRICES) {
-  const existing = await stripe('GET', `/prices?active=true&lookup_keys[]=${p.lookup_key}`);
+  const existing = await stripe('GET', `/prices?active=true&lookup_keys[]=${p.lookup_key}&expand[]=data.currency_options`);
   if (existing.data.length) {
-    output[p.env] = existing.data[0].id;
-    console.log(`Found   ${p.product.name}: ${existing.data[0].id}`);
+    const found = existing.data[0];
+    output[p.env] = found.id;
+    // UK visitors pay in pounds: prices made before that need a GBP option.
+    if (!found.currency_options?.gbp) {
+      await stripe('POST', `/prices/${found.id}`, { currency_options: p.price.currency_options });
+      console.log(`Added £ ${p.product.name}: ${found.id}`);
+    } else {
+      console.log(`Found   ${p.product.name}: ${found.id}`);
+    }
     continue;
   }
   const product = await stripe('POST', '/products', { ...p.product, metadata: { app: 'society-of-daves' } });

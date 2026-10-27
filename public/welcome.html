@@ -21,10 +21,12 @@
     gtag('set', 'ads_data_redaction', true);
     gtag('js', new Date());
     gtag('config', 'G-0WLED48Q40');
-    // A new member paid $1. The session ID stops a refresh counting twice.
+    // A new member paid $1 or £1 (cur=gbp). The session ID stops a refresh
+    // counting twice.
+    var q = new URLSearchParams(location.search);
     gtag('event', 'purchase', {
-      transaction_id: new URLSearchParams(location.search).get('session_id') || undefined,
-      value: 1, currency: 'USD',
+      transaction_id: q.get('session_id') || undefined,
+      value: 1, currency: q.get('cur') === 'gbp' ? 'GBP' : 'USD',
       items: [{ item_id: 'membership', item_name: 'Monthly membership', price: 1, quantity: 1 }],
     });
   </script>
@@ -52,6 +54,17 @@
       <li>Somewhere, a Dave you've never met is slightly prouder of you.</li>
     </ul>
 
+    <section class="refer" aria-labelledby="refer-title" data-share-box>
+      <h2 id="refer-title">Know another Dave?</h2>
+      <p>Every Dave deserves to be organised, and most of them don't know we exist yet. Send one our way, or give one a membership.</p>
+      <div class="badge-share">
+        <a class="share-button" href="mailto:?subject=You%20should%20join%20the%20Society%20of%20Daves&amp;body=I've%20joined%20the%20Society%20of%20Daves%2C%20a%20club%20for%20people%20called%20Dave%20(and%20anyone%20willing%20to%20be%20called%20Dave).%20There's%20a%20monthly%20newsletter%20about%20the%20name.%20I%20thought%20of%20you%3A%0A%0Ahttps%3A%2F%2Fsocietyofdaves.com%2F%3Futm_source%3Dmember%26utm_medium%3Demail%26utm_campaign%3Dwelcome-page%26utm_content%3Demail">Email a Dave</a>
+        <button class="share-button share-plain" type="button" data-share-type="site" data-share-url="https://societyofdaves.com/?utm_source=member&amp;utm_medium=referral&amp;utm_campaign=welcome-page&amp;utm_content=share" data-share-text="I've joined the Society of Daves. You should too.">Share the link</button>
+        <a class="share-button share-plain" href="/gift?utm_source=member&amp;utm_medium=referral&amp;utm_campaign=welcome-page&amp;utm_content=gift">Give a membership</a>
+        <p class="share-status" aria-live="polite"></p>
+      </div>
+    </section>
+
     <p><a class="button" href="/">Back to the Society</a></p>
   </main>
 
@@ -66,6 +79,8 @@
       </nav>
     </div>
   </footer>
+  <script src="/app.js" defer></script>
   <script src="/consent.js" defer></script>
+  <script src="/currency.js" defer></script>
 </body>
 </html>

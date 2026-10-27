@@ -38,7 +38,7 @@ Register `societyofdaves.com` on Namecheap. Point it at Vercel in step 4. The Re
 ### 2. Stripe
 1. Create a Stripe account and finish activation (business details, bank account).
 2. **Developers → API keys**: copy the secret key into `.env.local` as `STRIPE_SECRET_KEY` (copy `.env.example` first). Use the test-mode key (`sk_test_`) until everything works.
-3. Run **`npm run stripe:setup`**. It creates the $1/month membership price, the $6 and $12 gift prices and the customer portal, then prints `STRIPE_PRICE_ID`, `STRIPE_GIFT_PRICE_6`, `STRIPE_GIFT_PRICE_12` and `STRIPE_PORTAL_URL`. Running it again is safe.
+3. Run **`npm run stripe:setup`**. It creates the $1/month membership price, the $6 and $12 gift prices (each with a matching £ price for UK visitors) and the customer portal, then prints `STRIPE_PRICE_ID`, `STRIPE_GIFT_PRICE_6`, `STRIPE_GIFT_PRICE_12` and `STRIPE_PORTAL_URL`. Running it again is safe.
 4. Once the site is live, run **`npm run stripe:setup -- --webhook`** to create the webhook for `https://societyofdaves.com/api/stripe-webhook` and print `STRIPE_WEBHOOK_SECRET`.
 5. When you switch to live mode, put the `sk_live_` key in `.env.local` and run steps 3 and 4 again. Live mode has its own prices, portal and webhook.
 6. Optional: under **Settings → Payments**, turn on Apple Pay and Google Pay. They make a $1 impulse purchase much easier on phones.
@@ -93,6 +93,35 @@ Setup:
 - Test it in Stripe test mode: buy a gift with "Straight away" and check that both emails arrive. Then buy one with a date of tomorrow, and run the workflow by hand the next day.
 
 **Watch the Resend limits before Christmas.** The free plan sends at most 100 emails a day. If more than about 90 gifts are booked for Christmas Day, upgrade to Resend Pro ($20/month) for December, or some gifts will be delayed until the job runs again on 26 December.
+
+## Prices in pounds for UK visitors
+
+Visitors from the UK, Isle of Man, Jersey and Guernsey see £1, £6 and £12. Everyone else sees $1, $6 and $12.
+- `/api/geo` reads Vercel's `x-vercel-ip-country` header. `public/currency.js` then swaps the Society's own prices on the page, plus wording like "one dollar". It leaves other amounts alone, such as "Under $10" in the gift guide. Anything inside `data-fixed-currency`, such as the terms page, is never changed.
+- Checkout forms send the currency the page showed, so Stripe charges exactly that. Each Stripe price has a GBP option.
+- The welcome and gift-ended emails, and the GA4 `purchase` events, use the currency that was charged.
+
+## Sharing and referrals
+
+- **Shareable badge.** Under the homepage badge, "Share my badge" shares a link like `societyofdaves.com/badge/Steve` (using the phone's share sheet, or copying the link on a computer). The link previews as an image of the badge with "Steve" crossed out and corrected to Dave. Visitors who follow it land on the homepage with that name already on the badge. "Download" saves the same image as a PNG.
+  - `api/badge.js` draws the image (`satori` and `@resvg/resvg-js`, using the site's fonts from `@fontsource`). Vercel's CDN caches each name's image.
+  - `api/share.js` serves the preview tags for `/badge/<name>` (see the rewrite in `vercel.json`).
+- **"Know another Dave?"** The welcome email, the gift email and the welcome page offer a ready-written email to send a Dave, a share link and a gift link. All are tagged `utm_source=member`, so referred members show up in GA4 and in their Stripe metadata.
+- **Shares are counted** as GA4 `share` events (`method`: native, copy or download).
+
+### For each Dave Dispatch
+
+Paste this at the end of every Broadcast in Resend. Change `2026-11` to the issue's month.
+
+```html
+<table role="presentation" width="100%" style="margin:24px 0;background:#FFF9C4;border:2px solid #000;border-radius:10px">
+  <tr><td style="padding:16px 18px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;color:#000">
+    <p style="margin:0 0 6px;font-size:18px;font-weight:700">Know another Dave?</p>
+    <p style="margin:0 0 12px">Forward them this issue. Every Dave deserves to be organised.</p>
+    <p style="margin:0"><a href="https://societyofdaves.com/?utm_source=member&amp;utm_medium=email&amp;utm_campaign=dispatch-2026-11&amp;utm_content=forward" style="color:#000;font-weight:700">Send them to the Society</a> &nbsp;·&nbsp; <a href="https://societyofdaves.com/gift?utm_source=member&amp;utm_medium=email&amp;utm_campaign=dispatch-2026-11&amp;utm_content=gift" style="color:#000;font-weight:700">Give a Dave a membership</a></p>
+  </td></tr>
+</table>
+```
 
 ## Images
 
