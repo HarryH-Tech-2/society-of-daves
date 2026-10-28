@@ -25,6 +25,20 @@
       form.appendChild(input);
     }
     form.addEventListener('submit', () => {
+      // Count the click before the page leaves for Stripe, so visitors who
+      // give up on the card form still show up. Matches the purchase events
+      // on welcome.html and gift-sent.html.
+      if (typeof window.gtag === 'function') {
+        const isGift = form.action.endsWith('/api/gift-checkout');
+        const months = isGift ? Number(new FormData(form).get('plan')) || 0 : 0;
+        const currency = form.elements.currency && form.elements.currency.value === 'gbp' ? 'GBP' : 'USD';
+        const item = isGift
+          ? { item_id: 'gift-' + months, item_name: months + '-month gift membership', price: months, quantity: 1 }
+          : { item_id: 'membership', item_name: 'Monthly membership', price: 1, quantity: 1 };
+        window.gtag('event', 'begin_checkout', {
+          currency, value: item.price, items: [item], transport_type: 'beacon',
+        });
+      }
       const button = form.querySelector('button[type="submit"], button:not([type])');
       button.dataset.label = button.textContent;
       button.disabled = true;
