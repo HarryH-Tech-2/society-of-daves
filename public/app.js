@@ -111,6 +111,35 @@
     wall.innerHTML = '<span>Dave</span>'.repeat(count);
   });
 
+  // Hero headline: swaps between the lines in data-rotate every 5 seconds.
+  // The lines are stacked in one grid cell so the heading never changes
+  // height. Built before currency.js runs, so "$1" still becomes "£1".
+  const heroTitle = document.querySelector('h1[data-rotate]');
+  if (heroTitle) {
+    const lines = [heroTitle.textContent, ...heroTitle.dataset.rotate.split('|')];
+    heroTitle.textContent = '';
+    heroTitle.classList.add('rotating');
+    const spans = lines.map((text, i) => {
+      const span = document.createElement('span');
+      span.textContent = text;
+      if (i) span.setAttribute('aria-hidden', 'true');
+      heroTitle.appendChild(span);
+      return span;
+    });
+    let current = 0;
+    let paused = false;
+    heroTitle.addEventListener('mouseenter', () => { paused = true; });
+    heroTitle.addEventListener('mouseleave', () => { paused = false; });
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setInterval(() => {
+        if (paused || document.hidden) return;
+        spans[current].setAttribute('aria-hidden', 'true');
+        current = (current + 1) % spans.length;
+        spans[current].removeAttribute('aria-hidden');
+      }, 5000);
+    }
+  }
+
   // Scroll-triggered movement: chart bars grow, highlighter marks sweep,
   // numbers count up. CSS only hides things once this class is present.
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

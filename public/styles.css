@@ -139,6 +139,16 @@ a:hover { color: var(--red-deep); }
   max-width: 14ch;
 }
 
+/* Rotating headline (see app.js): every line sits in the same cell, and
+   only the one without aria-hidden shows. */
+.hero h1.rotating { display: grid; }
+.hero h1.rotating > span {
+  grid-area: 1 / 1;
+  transition: opacity 400ms ease, transform 400ms ease, visibility 400ms;
+}
+.hero h1.rotating > span[aria-hidden] { opacity: 0; transform: translateY(0.25em); visibility: hidden; }
+@media (prefers-reduced-motion: reduce) { .hero h1.rotating > span { transition: none; } }
+
 .hero .lede {
   font-size: var(--step-1);
   line-height: 1.45;

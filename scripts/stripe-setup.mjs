@@ -12,7 +12,7 @@
 //   node scripts/stripe-setup.mjs --webhook    (also creates the webhook for SITE_URL)
 
 import { readFile } from 'node:fs/promises';
-import { stripeRequest } from '../lib/stripe.js';
+import { stripeRequest, STRIPE_API_VERSION } from '../lib/stripe.js';
 
 async function loadEnvFile() {
   try {
@@ -111,6 +111,7 @@ if (process.argv.includes('--webhook')) {
   } else {
     const created = await stripe('POST', '/webhook_endpoints', {
       url,
+      api_version: STRIPE_API_VERSION,
       enabled_events: ['checkout.session.completed', 'customer.subscription.deleted'],
       description: 'Society of Daves: memberships and gifts',
     });
