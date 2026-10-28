@@ -38,6 +38,9 @@ Register `societyofdaves.com` on Namecheap. Point it at Vercel in step 4. The Re
 ### 2. Stripe
 1. Create a Stripe account and finish activation (business details, bank account).
 2. **Developers → API keys**: copy the secret key into `.env.local` as `STRIPE_SECRET_KEY` (copy `.env.example` first). Use the test-mode key (`sk_test_`) until everything works.
+   If Stripe only offers a restricted key (`rk_live_`), give it these permissions and leave everything else as None:
+   - Write: Checkout Sessions, PaymentIntents, Products, Prices, Customer portal, Webhook Endpoints
+   - Read: Customers, Subscriptions
 3. Run **`npm run stripe:setup`**. It creates the $1/month membership price, the $6 and $12 gift prices (each with a matching £ price for UK visitors) and the customer portal, then prints `STRIPE_PRICE_ID`, `STRIPE_GIFT_PRICE_6`, `STRIPE_GIFT_PRICE_12` and `STRIPE_PORTAL_URL`. Running it again is safe.
 4. Once the site is live, run **`npm run stripe:setup -- --webhook`** to create the webhook for `https://societyofdaves.com/api/stripe-webhook` and print `STRIPE_WEBHOOK_SECRET`.
 5. When you switch to live mode, put the `sk_live_` key in `.env.local` and run steps 3 and 4 again. Live mode has its own prices, portal and webhook.

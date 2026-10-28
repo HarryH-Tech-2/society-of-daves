@@ -25,11 +25,12 @@ async function loadEnvFile() {
 
 const vars = { ...(await loadEnvFile()), ...process.env };
 const key = vars.STRIPE_SECRET_KEY;
-if (!key || !key.startsWith('sk_')) {
+// A secret key (sk_) or a restricted key (rk_) with the permissions in the README.
+if (!key || !/^(sk|rk)_/.test(key)) {
   console.error('Put your Stripe secret key in .env.local as STRIPE_SECRET_KEY=sk_test_... and run again.');
   process.exit(1);
 }
-const live = key.startsWith('sk_live_');
+const live = /^(sk|rk)_live_/.test(key);
 const siteUrl = (vars.SITE_URL && !vars.SITE_URL.includes('localhost')) ? vars.SITE_URL : 'https://societyofdaves.com';
 const stripe = (method, path, params) => stripeRequest(key, method, path, params);
 
@@ -51,8 +52,10 @@ const PRICES = [
   },
 ];
 
-const account = await stripe('GET', '/account');
-console.log(`Stripe account: ${account.settings?.dashboard?.display_name || account.id} (${live ? 'LIVE mode' : 'test mode'})\n`);
+// Restricted keys usually can't read the account, so the name is a nice-to-have.
+const account = await stripe('GET', '/account').catch(() => null);
+const accountName = account?.settings?.dashboard?.display_name || account?.id || '(name hidden from this key)';
+console.log(`Stripe account: ${accountName} (${live ? 'LIVE mode' : 'test mode'})\n`);
 
 const output = {};
 
