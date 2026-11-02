@@ -1,3 +1,5 @@
+import { CONSENT_COUNTRIES } from '../lib/consent.js';
+
 // Shared page pieces for generated pages (blog, posts). The homepage and
 // legal pages are hand-written HTML in public/ and use the same markup.
 
@@ -43,17 +45,21 @@ ${jsonLd.map((d) => `  <script type="application/ld+json">${JSON.stringify(d)}</
 ${GOOGLE_TAG}`;
 }
 
-// Google Analytics 4 (property "Society of Daves"). The hand-written pages in
-// public/ carry the same snippet; change the ID in both places.
-// Consent Mode: cookies stay off until the visitor says yes in the banner
-// (public/consent.js). A saved "yes" is applied here, before the config call.
+// Google Analytics 4 (property "Society of Daves"). npm run build copies this
+// snippet into the hand-written pages in public/ too, so change it only here.
+// Consent Mode: where the law requires asking (lib/consent.js), cookies stay
+// off until the visitor says yes in the banner (public/consent.js); everywhere
+// else they're on by default. A saved answer from the banner wins either way.
 export const GA_ID = 'G-0WLED48Q40';
+const CONSENT_KEYS = ['analytics_storage', 'ad_storage', 'ad_user_data', 'ad_personalization'];
+const consentState = (v, extra = '') => `{ ${CONSENT_KEYS.map((k) => `${k}: '${v}'`).join(', ')}${extra} }`;
 export const GOOGLE_TAG = `  <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
-    try { if (localStorage.getItem('dave-cookies') === 'granted') gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' }); } catch (e) {}
+    gtag('consent', 'default', ${consentState('denied', `, region: ${JSON.stringify(CONSENT_COUNTRIES).replace(/"/g, "'")}`)});
+    gtag('consent', 'default', ${consentState('granted')});
+    try { var c = localStorage.getItem('dave-cookies'); if (c) gtag('consent', 'update', c === 'granted' ? ${consentState('granted')} : ${consentState('denied')}); } catch (e) {}
     gtag('set', 'url_passthrough', true);
     gtag('set', 'ads_data_redaction', true);
     gtag('js', new Date());

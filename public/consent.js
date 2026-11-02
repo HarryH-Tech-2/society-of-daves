@@ -1,7 +1,8 @@
-// Cookie consent banner. Google Analytics starts with every cookie denied
-// (see the consent defaults in each page's <head>); this asks once, remembers
-// the answer in localStorage, and tells Google. Any element with
-// data-cookie-settings reopens the banner.
+// Cookie consent banner. Where the law requires asking (UK, EU/EEA,
+// Switzerland: see lib/consent.js), Google cookies start denied and this asks
+// once, remembers the answer in localStorage, and tells Google. Elsewhere
+// cookies start on and the banner only appears if someone clicks an element
+// with data-cookie-settings, which works for everyone.
 
 (function () {
   const KEY = 'dave-cookies';
@@ -71,5 +72,23 @@
     open(link);
   });
 
-  if (!stored()) open();
+  if (stored()) return;
+
+  // Ask /api/geo whether this visitor's country needs the banner, once per
+  // visit. If it can't say (offline, blocked), show the banner to be safe.
+  const REGION_KEY = 'dave-consent-region';
+  let needed = null;
+  try { needed = sessionStorage.getItem(REGION_KEY); } catch (e) { /* storage blocked */ }
+  if (needed) {
+    if (needed === 'yes') open();
+    return;
+  }
+  fetch('/api/geo')
+    .then((res) => (res.ok ? res.json() : null))
+    .then((data) => {
+      const ask = !data || data.consent !== false;
+      try { sessionStorage.setItem(REGION_KEY, ask ? 'yes' : 'no'); } catch (e) { /* ask again next page */ }
+      if (ask && !stored()) open();
+    })
+    .catch(() => { if (!stored()) open(); });
 })();
