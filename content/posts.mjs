@@ -5,6 +5,51 @@
 
 export const posts = [
   {
+    slug: 'why-is-d-called-david-cyberpunk-edgerunners-2',
+    title: 'Why is D called David in Cyberpunk: Edgerunners 2?',
+    description: 'D, the netrunner in Cyberpunk: Edgerunners 2, is also called David. Here is who he is, why the name matters, and how he mirrors David Martinez from the first series. Spoilers.',
+    date: '2026-11-02',
+    dek: 'A new Dave has entered Night City. The Society has questions, and one big spoiler warning.',
+    takeaways: [
+      'D, the nomad netrunner in Cyberpunk: Edgerunners 2 (2026), is also called David.',
+      'The writers built him as a parallel to David Martinez, the hero of the first Cyberpunk: Edgerunners. Both want revenge, and both go after Arasaka.',
+      'The show\'s creators haven\'t given a separate reason for the name. The echo of the first series is the point.',
+    ],
+    body: `
+<p><strong>D, the netrunner at the centre of <a href="https://en.wikipedia.org/wiki/D_(Cyberpunk:_Edgerunners_2)">Cyberpunk: Edgerunners 2</a>, is also called David.</strong> If that rings a bell, it's meant to. The first series followed a different David, David Martinez, and the new show deliberately sets the two side by side. Here's what we know, from the Society's official position of having opinions about anyone called David.</p>
+<p><strong>Spoiler warning:</strong> this post discusses how the second series ends.</p>
+
+<h2>Who is D?</h2>
+<p>D is a nomad netrunner from the Snake Nation clan. After his clan is massacred, he sets out to find and punish the man responsible. The character was created by the series' writer and showrunner, <strong>Bartosz Sztybor</strong>, with director <strong>Kai Ikarashi</strong>, for the 2026 series from Studio Trigger and CD Projekt Red. He's voiced by <strong>Koki Uchiyama</strong> in Japanese and <strong>Nazeeh Tarsha</strong> in the English dub.</p>
+<p>His fellow survivor <strong>Omi</strong>, another former member of the clan, knew him before everything changed.</p>
+
+<h2>Why is D named David?</h2>
+<p>As far as we can find, the creators haven't explained the name in so many words. But the reason is hard to miss: <strong>D was written as a parallel to David Martinez</strong>, the hero of the first <a href="https://en.wikipedia.org/wiki/Cyberpunk:_Edgerunners">Cyberpunk: Edgerunners</a>. Both are young men driven by revenge, and both end up going after the Arasaka corporation, but they go about it very differently. Giving D the same first name makes the comparison impossible to ignore, and reviewers at Radio Times and GamesRadar picked up on how the two characters' final choices mirror each other.</p>
+<p>The biggest spoiler is also the clearest link between them. D eventually learns that the man behind his clan's massacre, Tanaka, was already killed by David Martinez's crew. His revenge was taken before he got there, and that leaves him empty in the final act. Sztybor reportedly wanted D's ending to be more ambiguous and more hopeful than the first David's.</p>
+
+<h2>Is D the same person as David Martinez?</h2>
+<p>No. They're two different characters who share a first name. That's the source of much of the confusion online, and of most of the searches that brought you here.</p>
+
+<h2>What does the name David mean?</h2>
+<p>David is a Hebrew name, usually translated as <strong>"beloved"</strong>. That's an interesting choice for two characters whose lives go so badly, and we'd like to think the writers knew it. The full story is in <a href="/blog/what-does-the-name-dave-mean/">what the name Dave means</a>, and the real-life Davids are in <a href="/blog/famous-daves/">famous Daves</a>.</p>
+
+<h2>Does D count as a Dave?</h2>
+<p>Under Article 1 of the <a href="/#bylaws">Society's bylaws</a>, anyone called David is a full member, and nicknames are no barrier. D is therefore welcome, though the Society would ask him to leave the cyberware at the door.</p>
+`,
+    faqs: [
+      { q: 'What is D\'s real name in Cyberpunk: Edgerunners 2?', a: 'D is also called David. He is a nomad netrunner from the Snake Nation clan.' },
+      { q: 'Why is D named David?', a: 'The creators built D as a parallel to David Martinez, the hero of the first Cyberpunk: Edgerunners. Both seek revenge and go after Arasaka, and the shared name underlines the comparison. The creators have not given a separate reason.' },
+      { q: 'Is D the same person as David Martinez?', a: 'No. D and David Martinez are different characters who share the first name David.' },
+      { q: 'Who voices D?', a: 'Koki Uchiyama in Japanese and Nazeeh Tarsha in the English dub.' },
+    ],
+    sources: [
+      ['D (Cyberpunk: Edgerunners 2), Wikipedia', 'https://en.wikipedia.org/wiki/D_(Cyberpunk:_Edgerunners_2)'],
+      ['Cyberpunk: Edgerunners, Wikipedia', 'https://en.wikipedia.org/wiki/Cyberpunk:_Edgerunners'],
+      ['Cyberpunk: Edgerunners on X, on Omi and D', 'https://x.com/edgerunners/status/2113238944867594386'],
+    ],
+  },
+
+  {
     slug: 'gifts-for-daves',
     title: 'Gifts for Daves: 25 ideas for the Dave in your life',
     description: 'The best gifts for someone called Dave, sorted by type of Dave and by budget: music Daves, nature Daves, office Daves, Welsh Daves and the Dave who has everything.',
@@ -104,9 +149,10 @@ export const posts = [
 
   {
     slug: 'what-does-the-name-dave-mean',
-    title: 'What does the name Dave mean? The origin of David, explained',
-    description: 'Dave is short for David, a Hebrew name usually translated as "beloved". Here is where the name comes from, how it spread, and how Dave became the default nickname.',
+    title: 'What does the name Dave mean? Is Dave short for David?',
+    description: 'Yes, Dave is short for David, a Hebrew name usually translated as "beloved". Here is where the name comes from, how it spread, and how Dave became the default nickname.',
     date: '2026-10-26',
+    updated: '2026-11-02',
     dek: 'Short answer: "beloved". Long answer: three thousand years of kings, saints, statues and people in your office.',
     takeaways: [
       'Dave is the short form of David, which comes from the Hebrew name Dawid (דָּוִד), usually translated as "beloved".',
@@ -115,6 +161,10 @@ export const posts = [
     ],
     body: `
 <p><strong>Dave is short for David, and David is a Hebrew name that is usually translated as "beloved".</strong> That's the answer most name dictionaries give, and it's the one the Society prefers, for obvious reasons. The fuller story involves a shepherd who became a king, a Welsh saint, a Scottish king, a Georgian king and roughly 3.7 million American baby boys.</p>
+
+<h2>Is Dave short for David?</h2>
+<p><strong>Yes. Dave is short for David.</strong> It's the most common nickname for David in English, alongside the older Davy and Davie and the Welsh Dai. So Dave and David are the same name: David is the full form, and Dave is what most Davids get called by their friends, their colleagues and anyone who has known them for longer than ten minutes.</p>
+<p>A few people are given Dave as their full name, with no David behind it. They're rarer than you might think; more on them <a href="#dave-full-name">below</a>.</p>
 
 <h2>Where does the name David come from?</h2>
 <p>David comes from the Hebrew <i>Dawid</i> (דָּוִד). The usual explanation links it to the Hebrew word <i>dod</i>, which can mean "beloved" or "friend", and in some contexts "uncle". Scholars still debate the exact origin, as they do for most names this old. But "beloved" is the meaning that stuck, and it's the one you'll find in almost every baby-name book.</p>
@@ -136,8 +186,8 @@ export const posts = [
 <h2>When did David become Dave?</h2>
 <p>Common names collect nicknames, and David has collected several. <strong>Davy</strong> and <strong>Davie</strong> are the older ones; think of the frontiersman <a href="https://en.wikipedia.org/wiki/Davy_Crockett">Davy Crockett</a>, born in 1786. In Wales the traditional short form is <strong>Dai</strong>. <strong>Dave</strong> is the one most people use today, and it's the version on most office name badges. For the Daves who made the name famous, see <a href="/blog/famous-daves/">famous Daves</a>.</p>
 
-<h2>Is Dave a real name or just a nickname?</h2>
-<p>Both. Most Daves are Davids on their birth certificate, but some parents register Dave as the full name. Either way, the Society's position is clear: if you answer to Dave, you are a Dave. Article 2 of the <a href="/#bylaws">bylaws</a> covers Davids who insist on being called David.</p>
+<h2 id="dave-full-name">Is Dave a real name or just a nickname?</h2>
+<p>Both. Most Daves are Davids on their birth certificate, but some parents register Dave as the full name. The name-statistics site <a href="https://forebears.io/forenames/dave">Forebears</a> estimates that about 308,000 people worldwide have Dave as their actual given name, most of them in the US and Canada. That's a small club next to the roughly 13 million Davids (see <a href="/blog/how-popular-is-the-name-david/#how-many-davids">how many Davids there are</a>). Either way, the Society's position is clear: if you answer to Dave, you are a Dave. Article 2 of the <a href="/#bylaws">bylaws</a> covers Davids who insist on being called David.</p>
 
 <h2>What is the female version of David?</h2>
 <p>The best-known feminine forms are <strong>Davina</strong>, which is especially common in Scotland, and the rarer <strong>Davida</strong>. Many women are simply called Dave too. The Society welcomes all Daves.</p>
@@ -148,6 +198,8 @@ export const posts = [
     faqs: [
       { q: 'What does the name Dave mean?', a: 'Dave is short for David, a Hebrew name (Dawid) that is usually translated as "beloved".' },
       { q: 'Is Dave short for David?', a: 'Yes. Dave is the most common short form of David. Older short forms include Davy, Davie and the Welsh Dai. Some people are given Dave as their full legal name.' },
+      { q: 'Are Dave and David the same name?', a: 'Yes. David is the full name and Dave is its most common short form, so a Dave is usually a David. About 308,000 people worldwide have Dave itself as their given name.' },
+      { q: 'What is Dave\'s full name?', a: 'Usually David. Dave is a nickname for David, though a minority of Daves have Dave as their full legal name.' },
       { q: 'What is the origin of the name David?', a: 'David comes from Hebrew and from King David of Israel. He is honoured in Judaism, Christianity and Islam, which helped the name spread around the world.' },
       { q: 'What is the female version of David?', a: 'Davina, which is especially common in Scotland, and Davida are the best-known feminine forms of David.' },
     ],
@@ -155,22 +207,52 @@ export const posts = [
       ['David, Wikipedia', 'https://en.wikipedia.org/wiki/David'],
       ['David (name), Wikipedia', 'https://en.wikipedia.org/wiki/David_(name)'],
       ['Popular Baby Names, U.S. Social Security Administration', 'https://www.ssa.gov/oact/babynames/'],
+      ['Dave, Forebears', 'https://forebears.io/forenames/dave'],
     ],
   },
 
   {
     slug: 'how-popular-is-the-name-david',
-    title: 'How popular is the name David? A century of Daves in numbers',
-    description: 'About 3.7 million boys named David have been born in the US since 1880. The name peaked in the 1950s, was number one in 1960, and ranked 31st in 2024.',
+    title: 'How many Davids are there in the world? The name David in numbers',
+    description: 'About 13.4 million people worldwide are called David, making it the 13th most common first name on Earth. Plus a century of US data: number one in 1960, 31st in 2024.',
     date: '2026-10-26',
+    updated: '2026-11-02',
     dek: 'The data behind the feeling that there was a Dave in every classroom. There was.',
     takeaways: [
+      'About 13.4 million people in the world are called David, according to the name-statistics site Forebears. That makes it the 13th most common first name on Earth, before you count Dafydds, Davides and Dawids.',
+      'The US has the most Davids, about 4.6 million, followed by England with about 1.2 million.',
       'About 3.7 million boys named David were born in the US between 1880 and 2025, according to Social Security records.',
       'The peak decade was the 1950s, with about 770,000 Davids. The peak year was 1955, with about 86,000.',
       'David was the number one boys\' name in the US in 1960. In 2024 it ranked 31st, with about 7,300 births.',
     ],
     body: `
-<p><strong>David is one of the most popular boys' names in American history.</strong> About 3.7 million boys named David have been born in the US since records began in 1880. The name peaked in the 1950s, briefly took the top spot in 1960, and is still in the top 40 today.</p>
+<p><strong>About 13.4 million people in the world are called David</strong>, which makes it the 13th most common first name on the planet. In the US alone, about 3.7 million boys named David have been born since records began in 1880. The name peaked in the 1950s, briefly took the top spot in 1960, and is still in the top 40 today.</p>
+
+<h2 id="how-many-davids">How many Davids are there in the world?</h2>
+<p>Nobody runs a global register of Daves (the Society is working on it), but the best estimate comes from <a href="https://forebears.io/forenames/david">Forebears</a>, which counts first names across a database of more than four billion people. Its figure is <strong>about 13.4 million Davids worldwide</strong>, ranking David 13th among all the first names in the world.</p>
+<table>
+  <caption>Countries with the most people called David (Forebears, 2014 data)</caption>
+  <thead><tr><th scope="col">Country</th><th scope="col">People called David</th></tr></thead>
+  <tbody>
+    <tr><td>United States</td><td>4.6 million</td></tr>
+    <tr><td>England</td><td>1.2 million</td></tr>
+    <tr><td>Mexico</td><td>474,000</td></tr>
+    <tr><td>Nigeria</td><td>465,000</td></tr>
+    <tr><td>France</td><td>435,000</td></tr>
+    <tr><td>Canada</td><td>405,000</td></tr>
+    <tr><td>Spain</td><td>400,000</td></tr>
+    <tr><td>Uganda</td><td>377,000</td></tr>
+    <tr><td>Kenya</td><td>356,000</td></tr>
+    <tr><td>DR Congo</td><td>279,000</td></tr>
+  </tbody>
+</table>
+<p>That 13.4 million counts only the spelling David. It leaves out the Dafydds, Davides, Dawids, Davits and Dawuds (see <a href="/blog/david-in-other-languages/">David in other languages</a>), so the real number of Daves in spirit is higher still.</p>
+
+<h2>How many Daves are there?</h2>
+<p>If you mean people whose given name is literally Dave, not David, there are far fewer: Forebears puts it at <strong>about 308,000</strong> worldwide, mostly in the US, Canada and the Philippines. Most Daves are Davids on paper; see <a href="/blog/what-does-the-name-dave-mean/">is Dave short for David?</a></p>
+
+<h2>How many Davids are there in the US?</h2>
+<p>Forebears counted about 4.6 million Davids in the US. A different method gives a lower figure for those still alive: <a href="https://howmanyofme.org/first-names/david/">HowManyOfMe</a> takes the Social Security birth records and adjusts for life expectancy, and estimates about <strong>2.8 million living Americans named David</strong>, or roughly 1 in 120 people. The two figures measure different things and come from different years, so treat both as estimates.</p>
 
 <!-- chart -->
 
@@ -187,11 +269,11 @@ export const posts = [
 
 <h2>Why did David become less popular?</h2>
 <p>David didn't fall out of favour so much as the field got bigger. American parents now choose from a much wider range of names than they did in the 1950s, so even the top names have a smaller share of babies than they used to. David has held up better than many names from its era, and it has stayed in the top 50 for decades.</p>
-
-<h2>How many Daves are there?</h2>
-<p>Nobody counts Daves directly; there is no national Dave register. The Society is working on it. What we do know is that about 3.7 million American boys have been named David since 1880, and the name has been common in the UK, Ireland, Israel, much of Europe and beyond for centuries. Add the Davids, Dafydds, Davides and Dawids of the world (see <a href="/blog/david-in-other-languages/">David in other languages</a>) and the total is very large.</p>
 `,
     faqs: [
+      { q: 'How many people are called David in the world?', a: 'About 13.4 million people worldwide are called David, according to Forebears, making it the 13th most common first name in the world. That excludes other spellings such as Dafydd, Davide and Dawid.' },
+      { q: 'How many Daves are there in the world?', a: 'About 308,000 people have Dave as their actual given name, according to Forebears. Most Daves are Davids on paper, and there are about 13.4 million Davids worldwide.' },
+      { q: 'Which country has the most Davids?', a: 'The United States, with about 4.6 million people called David, followed by England with about 1.2 million (Forebears, 2014 data).' },
       { q: 'How popular is the name David?', a: 'David ranked 31st among US boys\' names in 2024, with about 7,300 births. It is one of the most-used boys\' names in American history, with about 3.7 million born since 1880.' },
       { q: 'When was the name David most popular?', a: 'David peaked in the 1950s, with about 770,000 US births in that decade. The single peak year was 1955, and David was the number one boys\' name in 1960.' },
       { q: 'Was David ever the most popular boys\' name?', a: 'Yes. David was the most popular name for baby boys in the United States in 1960, with 85,929 births, just ahead of Michael.' },
@@ -199,6 +281,9 @@ export const posts = [
     sources: [
       ['Popular Baby Names, U.S. Social Security Administration', 'https://www.ssa.gov/oact/babynames/'],
       ['David, Name Almanac (SSA data by year)', 'https://namealmanac.com/name/david'],
+      ['David, Forebears (worldwide first-name counts)', 'https://forebears.io/forenames/david'],
+      ['Dave, Forebears', 'https://forebears.io/forenames/dave'],
+      ['David, HowManyOfMe (living US estimate)', 'https://howmanyofme.org/first-names/david/'],
     ],
   },
 
@@ -279,17 +364,27 @@ export const posts = [
 
   {
     slug: 'david-in-other-languages',
-    title: 'David in other languages: Dafydd, Davide, Dawud and more',
-    description: 'How to say David around the world: Dafydd in Welsh, Dàibhidh in Scottish Gaelic, Davide in Italian, Dawid in Polish, Dawud in Arabic, Kawika in Hawaiian and more.',
+    title: 'David in Welsh is Dafydd: David in other languages, from Dewi to Dawud',
+    description: 'David in Welsh is Dafydd (said "DAH-vith"), or Dewi for Saint David, and Dai for short. Plus David in Scottish Gaelic, Italian, Polish, Arabic, Hawaiian and more.',
     date: '2026-10-26',
+    updated: '2026-11-02',
     dek: 'Wherever you go, there is a Dave. He just spells it differently.',
     takeaways: [
-      'David has a local form in almost every language: Dafydd (Welsh), Dàibhidh (Scottish Gaelic), Davide (Italian), Dawid (Polish), Davit (Georgian, Armenian), Dawud (Arabic), Kawika (Hawaiian).',
-      'In Welsh, Dewi is the form used for Saint David (Dewi Sant), and Dai is a common short form.',
+      'David in Welsh is Dafydd, pronounced roughly "DAH-vith". Dewi is the form used for Saint David (Dewi Sant), and Dai is the usual short form.',
+      'David has a local form in almost every language: Dàibhidh (Scottish Gaelic), Davide (Italian), Dawid (Polish), Davit (Georgian, Armenian), Dawud (Arabic), Kawika (Hawaiian).',
       'The name travelled so widely because King David is honoured in Judaism, Christianity and Islam.',
     ],
     body: `
 <p><strong>David is one of the most international names there is.</strong> King David is honoured in Judaism, Christianity and Islam (more on that in <a href="/blog/what-does-the-name-dave-mean/">what the name Dave means</a>), so the name has a local form in almost every language those traditions reached. Here's how to say Dave around the world.</p>
+
+<h2 id="welsh">What is David in Welsh?</h2>
+<p><strong>David in Welsh is Dafydd.</strong> It's pronounced roughly <strong>"DAH-vith"</strong>, because Welsh spelling works differently from English: a single <i>f</i> is said like an English "v", and <i>dd</i> is the "th" sound in "this". So Dafydd is not "Daff-id", whatever your satnav says.</p>
+<p>Welsh has two more forms you'll meet:</p>
+<ul>
+  <li><strong>Dewi</strong> (said "DEH-wee") is an older Welsh form, and the one used for the patron saint: Saint David is <strong>Dewi Sant</strong>, and St David's Day is <i>Dydd Gŵyl Dewi</i>. See our <a href="/blog/st-davids-day/">guide to St David's Day</a>.</li>
+  <li><strong>Dai</strong> (said like "dye") is the everyday short form, the Welsh equivalent of Dave.</li>
+</ul>
+<p>Wales takes the name seriously. Famous Welsh Dafydds include the 14th-century poet <a href="https://en.wikipedia.org/wiki/Dafydd_ap_Gwilym">Dafydd ap Gwilym</a>, often called the greatest poet in the Welsh language; <a href="https://en.wikipedia.org/wiki/Dafydd_ap_Gruffydd">Dafydd ap Gruffudd</a>, the last native Prince of Wales, who died in 1283; and the folk singer <a href="https://en.wikipedia.org/wiki/Dafydd_Iwan">Dafydd Iwan</a>, whose "Yma o Hyd" became an anthem for Wales football fans.</p>
 
 <h2>David in the languages of Britain and Ireland</h2>
 <table>
@@ -338,7 +433,9 @@ export const posts = [
 <p>Under Article 1 of the <a href="/#bylaws">Society's bylaws</a>, Daves, Davids, Davys, Daveys, Dais and Dafydds are all full members. We've taken the liberty of extending that to every form on this page. Kawikas, welcome.</p>
 `,
     faqs: [
-      { q: 'What is David in Welsh?', a: 'David is Dafydd in Welsh. Dewi is the form used for Saint David (Dewi Sant), and Dai is a common short form.' },
+      { q: 'What is David in Welsh?', a: 'David is Dafydd in Welsh, pronounced roughly "DAH-vith". Dewi is the form used for Saint David (Dewi Sant), and Dai is a common short form.' },
+      { q: 'How do you pronounce Dafydd?', a: 'Roughly "DAH-vith". In Welsh a single f sounds like an English v, and dd sounds like the "th" in "this".' },
+      { q: 'Is David a Welsh name?', a: 'David comes from Hebrew, but it has been a Welsh favourite for centuries because Saint David (Dewi Sant) is the patron saint of Wales. The Welsh forms are Dafydd, Dewi and Dai.' },
       { q: 'What is David in Arabic?', a: 'David is Dawud (also written Daoud) in Arabic, داود. In Islam, Dawud is honoured as a prophet and king.' },
       { q: 'What is David in Hawaiian?', a: 'David is Kawika in Hawaiian.' },
       { q: 'What is David in Italian?', a: 'David is Davide in Italian.' },
@@ -346,27 +443,59 @@ export const posts = [
     sources: [
       ['David (name), Wikipedia', 'https://en.wikipedia.org/wiki/David_(name)'],
       ['David IV of Georgia, Wikipedia', 'https://en.wikipedia.org/wiki/David_IV_of_Georgia'],
+      ['Dafydd, Wikipedia', 'https://en.wikipedia.org/wiki/Dafydd'],
+      ['Welsh orthography, Wikipedia', 'https://en.wikipedia.org/wiki/Welsh_orthography'],
     ],
   },
 
   {
     slug: 'st-davids-day',
-    title: 'St David\'s Day: what it is, when it is, and why every Dave should care',
-    description: 'St David\'s Day is on 1 March. Here is who Saint David was, why the Welsh wear daffodils and leeks, what "do the little things" means, and how to celebrate.',
+    title: 'When is St David\'s Day 2027? Monday 1 March, plus 10 facts about Saint David',
+    description: 'St David\'s Day is on 1 March every year; in 2027 that\'s a Monday. What the day is, 10 facts about Saint David, why the Welsh wear daffodils and leeks, and how to celebrate.',
     date: '2026-10-26',
+    updated: '2026-11-02',
     dek: 'The one day a year officially about a Dave. It\'s not a bank holiday. Yet.',
     takeaways: [
-      'St David\'s Day (Dydd Gŵyl Dewi) is on 1 March. It celebrates Saint David, the patron saint of Wales.',
+      'St David\'s Day (Dydd Gŵyl Dewi) is on 1 March every year. In 2027 it falls on a Monday. It celebrates Saint David, the patron saint of Wales.',
       'Saint David was a 6th-century Welsh bishop, traditionally said to have died in 589. His best-known teaching is "Do the little things" (Gwnewch y pethau bychain).',
       'The symbols of the day are the daffodil and the leek. It is not a public holiday, although there have been calls to make it one.',
     ],
     body: `
 <p><strong>St David's Day is celebrated on 1 March each year, in honour of Saint David, the patron saint of Wales.</strong> In Welsh it's <i>Dydd Gŵyl Dewi</i>. For Daves everywhere, it's the closest thing to a name day you'll get, and the Society encourages you to take full advantage.</p>
 
+<h2>When is St David's Day 2027?</h2>
+<p><strong>St David's Day 2027 is on Monday 1 March.</strong> The date never moves: it's always 1 March, the day Saint David is traditionally said to have died. Because it isn't a bank holiday, most of the parades and school events happen on the day itself, or on the nearest weekend when 1 March falls midweek.</p>
+<table>
+  <caption>St David's Day in the next few years</caption>
+  <thead><tr><th scope="col">Year</th><th scope="col">Date</th></tr></thead>
+  <tbody>
+    <tr><td>2027</td><td>Monday 1 March</td></tr>
+    <tr><td>2028</td><td>Wednesday 1 March</td></tr>
+    <tr><td>2029</td><td>Thursday 1 March</td></tr>
+  </tbody>
+</table>
+
+<h2>What is St David's Day?</h2>
+<p>It's the national day of Wales, the feast day of its patron saint. It's the Welsh equivalent of St Patrick's Day in Ireland or St Andrew's Day in Scotland, though noticeably less green-beer-based. People wear daffodils or leeks, children dress up in traditional Welsh costume, and towns hold parades and concerts. More on all of that below.</p>
+
 <h2>Who was Saint David?</h2>
 <p><a href="https://en.wikipedia.org/wiki/Saint_David">Saint David</a>, or <strong>Dewi Sant</strong> in Welsh, was a bishop who lived in the 6th century. He founded a monastery in the far west of Wales, where <a href="https://www.stdavidscathedral.org.uk/">St Davids Cathedral</a> now stands, and traditionally he died on 1 March 589. His community was famous for its strict, simple life: hard work and plain food.</p>
 <p>The place named after him, <strong>St Davids</strong> in Pembrokeshire, has city status thanks to its cathedral. With fewer than 2,000 residents, it's the smallest city in the UK.</p>
 <!-- figure:cathedral -->
+
+<h2>10 facts about Saint David</h2>
+<ol>
+  <li><strong>His Welsh name is Dewi Sant.</strong> Dewi is an old Welsh form of David; see <a href="/blog/david-in-other-languages/#welsh">David in Welsh</a>.</li>
+  <li><strong>His mother is a saint too.</strong> Tradition says he was the son of Saint Non, and the ruins of St Non's Chapel stand on the cliffs near St Davids.</li>
+  <li><strong>Nobody is sure where he was born.</strong> Tradition points to the coast near St Davids or somewhere in Ceredigion.</li>
+  <li><strong>He died on 1 March</strong>, which is why St David's Day falls then. The year is usually given as 589, sometimes 601.</li>
+  <li><strong>The ground rose under him.</strong> Legend says that while he preached at Llanddewi Brefi, the ground he stood on rose into a small hill so the crowd could see and hear him. The village and its church are on it.</li>
+  <li><strong>His emblem is a dove</strong>, after a white dove that was said to settle on his shoulder during that same sermon.</li>
+  <li><strong>His monks drank only water.</strong> His rule was famously strict: bread, salt and herbs to eat, water to drink, no meat and no beer. His followers were nicknamed the "watermen". The Society does not follow this part of his teaching.</li>
+  <li><strong>The Pope made it official around 1120</strong>, when Pope Callixtus II recognised him as a saint.</li>
+  <li><strong>He's buried in St Davids Cathedral</strong>, whose shrine to him drew pilgrims for centuries. A new shrine was built in 1275.</li>
+  <li><strong>His last words are still quoted</strong>: "Do the little things". More on that next.</li>
+</ol>
 
 <h2>What does "do the little things" mean?</h2>
 <p>Saint David's best-remembered words come from his last sermon. Translations vary, but tradition records them roughly as: "Be joyful, keep the faith, and do the little things that you have seen me do." In Welsh, <i>Gwnewch y pethau bychain</i> ("Do the little things") is still a well-known saying. It's good advice for anyone, and a reasonable motto for a Dave.</p>
@@ -398,7 +527,9 @@ export const posts = [
 <p>Looking for a present? Our <a href="/blog/gifts-for-daves/">gift guide for Daves</a> has a section for St David's Day, and a <a href="/gift">Society gift membership</a> can be scheduled to arrive on 1 March. Curious what Saint David is called in other languages? See <a href="/blog/david-in-other-languages/">David in other languages</a>.</p>
 `,
     faqs: [
-      { q: 'When is St David\'s Day?', a: 'St David\'s Day is on 1 March every year.' },
+      { q: 'When is St David\'s Day?', a: 'St David\'s Day is on 1 March every year. In 2027 it falls on a Monday.' },
+      { q: 'What is St David\'s Day?', a: 'The national day of Wales and the feast day of its patron saint, Saint David (Dewi Sant). People wear daffodils or leeks, and there are parades, school concerts and traditional Welsh food.' },
+      { q: 'Why is St David\'s Day on 1 March?', a: 'Saint David is traditionally said to have died on 1 March, usually given as the year 589.' },
       { q: 'Is St David\'s Day a bank holiday?', a: 'No. St David\'s Day is not a public holiday in Wales or the rest of the UK, although there have been calls to make it one.' },
       { q: 'Why do people wear daffodils on St David\'s Day?', a: 'The daffodil and the leek are both national symbols of Wales. The leek is the older emblem, linked to a legend about Saint David. The daffodil became popular later, and the Welsh words for the two plants are similar: cenhinen (leek) and cenhinen Pedr (daffodil).' },
       { q: 'What did Saint David say?', a: 'His best-known teaching, from his last sermon, is "Do the little things" (in Welsh, Gwnewch y pethau bychain).' },
