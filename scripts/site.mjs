@@ -72,7 +72,7 @@ export const header = () => `<a class="skip" href="#main">Skip to content</a>
     <nav aria-label="Main">
       <a class="optional" href="/blog/">Blog</a>
       <a class="optional" href="/gift">Give a gift</a>
-      <a href="/#join">Join for $1</a>
+      <a class="nav-join" href="/#join"><span class="nav-join-hello" aria-hidden="true">Hello, Dave</span>Join for <span class="nav-price">$1</span></a>
     </nav>
   </header>`;
 

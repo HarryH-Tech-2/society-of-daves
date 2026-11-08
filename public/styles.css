@@ -80,12 +80,101 @@ a:hover { color: var(--red-deep); }
   letter-spacing: -0.01em;
   text-decoration: none;
 }
-.wordmark span { color: var(--red); }
+/* "Daves" is written on a little name sticker, slightly askew */
+.wordmark span {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 10px 2px;
+  font-family: var(--marker);
+  font-weight: 400;
+  font-stretch: 100%;
+  font-size: 1.15em;
+  line-height: 1.15;
+  color: var(--ink);
+  background: var(--paper);
+  border: 2px solid var(--red);
+  border-top-width: 8px;
+  border-radius: 7px;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.18);
+  transform: rotate(-3deg);
+  transition: transform 160ms ease;
+}
+.wordmark:hover span { transform: rotate(2deg) scale(1.05); }
 
-.masthead nav { display: flex; gap: 20px; font-size: var(--step--1); font-weight: 600; }
+.masthead nav { display: flex; align-items: center; gap: 22px; font-size: var(--step--1); font-weight: 700; }
 .masthead nav a { text-decoration: none; }
-.masthead nav a:hover { text-decoration: underline; }
+/* Text links get a red marker underline, scribbled in on hover */
+.masthead nav a:not(.nav-join) {
+  padding-bottom: 2px;
+  background: linear-gradient(var(--red), var(--red)) left bottom / 0 3px no-repeat;
+  transition: background-size 180ms ease;
+}
+.masthead nav a:not(.nav-join):hover,
+.masthead nav a:not(.nav-join):focus-visible { background-size: 100% 3px; }
 @media (max-width: 640px) { .masthead nav .optional { display: none; } }
+
+/* Join: a chunky red pill with a yellow price tag stuck on, and a
+   "Hello, Dave" sticker that pops up on hover */
+.nav-join {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px 8px 18px;
+  font-weight: 800;
+  font-stretch: 108%;
+  color: var(--paper);
+  background: var(--red);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: 0 4px 0 var(--ink);
+  transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+.nav-join:hover, .nav-join:focus-visible { color: var(--paper); background: var(--red-deep); transform: translateY(-2px); box-shadow: 0 6px 0 var(--ink); }
+.nav-join:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ink); }
+.nav-price {
+  display: inline-block;
+  padding: 2px 9px 2px 8px;
+  font-weight: 900;
+  font-stretch: 90%;
+  font-size: 1.1em;
+  line-height: 1.1;
+  color: var(--ink);
+  background: var(--highlight);
+  border: 2px solid var(--ink);
+  border-radius: 6px 999px 999px 6px;
+  transform: rotate(-6deg);
+  transition: transform 160ms ease;
+}
+.nav-join:hover .nav-price { transform: rotate(4deg) scale(1.1); }
+.nav-join-hello {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 8px);
+  padding: 2px 8px;
+  font-family: var(--marker);
+  font-weight: 400;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  color: var(--ink);
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  opacity: 0;
+  transform: translate(-50%, -6px) rotate(-4deg);
+  transition: opacity 140ms ease, transform 140ms ease;
+  pointer-events: none;
+}
+.nav-join:hover .nav-join-hello, .nav-join:focus-visible .nav-join-hello { opacity: 1; transform: translate(-50%, 0) rotate(-4deg); }
+.wordmark, .nav-join { white-space: nowrap; }
+@media (max-width: 480px) {
+  .masthead { gap: 10px; }
+  .wordmark { font-size: 0.95rem; }
+  .nav-join { gap: 6px; padding: 6px 7px 6px 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wordmark span, .nav-join, .nav-price, .nav-join-hello, .masthead nav a { transition: none; }
+}
 
 /* ---------- Buttons ---------- */
 
@@ -683,9 +772,14 @@ mark {
 .blog-hero { position: relative; overflow: hidden; isolation: isolate; padding: clamp(40px, 7vw, 88px) 0; border-bottom: 2px solid var(--ink); }
 .blog-hero h1 { font-size: var(--step-4); font-weight: 900; font-stretch: 85%; line-height: 1; letter-spacing: -0.02em; margin: 0 0 14px; }
 .blog-hero p { font-size: var(--step-1); max-width: 40ch; margin: 0; }
-.blog-hero .dave-wall {
-  -webkit-mask-image: linear-gradient(100deg, rgba(0,0,0,0.2) 30%, #000 75%);
-          mask-image: linear-gradient(100deg, rgba(0,0,0,0.2) 30%, #000 75%);
+
+/* Blog pages: the Dave wall fills the whole page and stays put while you
+   scroll. On posts it fades behind the article column so the text stays
+   easy to read. */
+.page-wall { position: fixed; inset: -80px; }
+.post-page .page-wall {
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(50% - 470px), rgba(0,0,0,0.14) calc(50% - 390px), rgba(0,0,0,0.14) calc(50% + 390px), #000 calc(50% + 470px));
+          mask-image: linear-gradient(90deg, #000 calc(50% - 470px), rgba(0,0,0,0.14) calc(50% - 390px), rgba(0,0,0,0.14) calc(50% + 390px), #000 calc(50% + 470px));
 }
 .blog-list { padding-top: 48px; padding-bottom: 24px; }
 

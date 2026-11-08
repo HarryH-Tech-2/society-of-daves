@@ -115,7 +115,8 @@ function renderPost(post) {
 <head>
   ${head({ title: `${post.title} | The Society of Daves`, description: post.description, path, ogType: 'article', image: coverOf(post), jsonLd })}
 </head>
-<body>
+<body class="blog-page post-page">
+  <div class="dave-wall page-wall" aria-hidden="true"></div>
   ${header()}
 
   <main id="main">
@@ -192,12 +193,12 @@ function renderIndex() {
 <head>
   ${head({ title: 'The Dave Blog | The Society of Daves', description, path: '/blog/', jsonLd })}
 </head>
-<body>
+<body class="blog-page">
+  <div class="dave-wall page-wall" aria-hidden="true"></div>
   ${header()}
 
   <main id="main">
     <section class="blog-hero">
-      <div class="dave-wall" aria-hidden="true"></div>
       <div class="wrap">
         <h1>The Dave Blog</h1>
         <p>Research, history and gift advice about the name Dave, published by the Society. Members get the best of it in The Dave Dispatch every month.</p>
