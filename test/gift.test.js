@@ -61,7 +61,7 @@ test('parseGiftForm rejects bad input with a useful message', () => {
 
 test('gift checkout creates a one-off payment with the gift in PaymentIntent metadata', async () => {
   responder = () => ({ status: 200, body: { url: 'https://checkout.stripe.com/c/pay/cs_g' } });
-  const req = new Request('https://x/api/gift-checkout', { method: 'POST', body: form({ ...validGift, gclid: 'g1' }) });
+  const req = new Request('https://x/api/gift-checkout', { method: 'POST', headers: { 'x-vercel-ip-country': 'DE' }, body: form({ ...validGift, gclid: 'g1' }) });
   const res = await handleGiftCheckout(req, env, NOW);
   assert.equal(res.headers.get('location'), 'https://checkout.stripe.com/c/pay/cs_g');
   const sent = new URLSearchParams(calls[0].body.toString());
@@ -72,6 +72,8 @@ test('gift checkout creates a one-off payment with the gift in PaymentIntent met
   assert.equal(sent.get('payment_intent_data[metadata][deliver_on]'), '2026-12-25');
   assert.equal(sent.get('payment_intent_data[metadata][gift_delivered]'), 'no');
   assert.equal(sent.get('payment_intent_data[metadata][gclid]'), 'g1');
+  assert.equal(sent.get('metadata[visitor_country]'), 'DE');
+  assert.equal(sent.get('payment_intent_data[metadata][visitor_country]'), 'DE');
 });
 
 test('gift checkout uses the configured Stripe price when there is one', async () => {

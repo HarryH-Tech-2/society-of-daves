@@ -149,6 +149,23 @@ test('checkout creates a subscription session and passes ad tracking through', a
   assert.equal(sent.get('subscription_data[metadata][gclid]'), 'abc123');
 });
 
+test('checkout records the visitor country from Vercel, and skips junk values', async () => {
+  responder = () => ({ status: 200, body: { url: 'https://checkout.stripe.com/c/pay/cs_1' } });
+  const post = (country) => handleCheckout(new Request('https://societyofdaves.com/api/checkout', {
+    method: 'POST', headers: country ? { 'x-vercel-ip-country': country } : {},
+  }), env);
+  await post('ca');
+  let sent = new URLSearchParams(calls.at(-1).body.toString());
+  assert.equal(sent.get('metadata[visitor_country]'), 'CA');
+  assert.equal(sent.get('subscription_data[metadata][visitor_country]'), 'CA');
+  await post('<script>');
+  sent = new URLSearchParams(calls.at(-1).body.toString());
+  assert.equal(sent.get('metadata[visitor_country]'), null);
+  await post(null);
+  sent = new URLSearchParams(calls.at(-1).body.toString());
+  assert.equal(sent.get('metadata[visitor_country]'), null);
+});
+
 test('checkout failure sends the visitor back with an error flag', async () => {
   responder = () => ({ status: 400, body: { error: { message: 'No such price' } } });
   const orig = console.error; console.error = () => {};
