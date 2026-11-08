@@ -1,30 +1,38 @@
 <!doctype html>
 <!-- Template for blog cover images (1200x630), also used as each post's
      social share image. Rendered by scripts/covers.sh with URL parameters:
-     ?title=...&top=HELLO&name=Dave -->
+     ?title=...&top=HELLO&name=Dave&theme=gifts
+     Each theme gives a post its own colours, background words and badge
+     placement, so no two covers look alike. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Permanent+Marker&display=swap">
 <style>
+  :root { --bg: #EEF0F3; --ink: #000; --brand: #D9232D; --wall: rgba(0,0,0,.065); --wall-hi: rgba(217,35,45,.15); --badge: #D9232D; --badge-ink: #fff; --card: #fff; --card-ink: #000; --tilt: -4deg; --wall-tilt: -6deg; }
   html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
-  body { background: #EEF0F3; font-family: 'Archivo', sans-serif; position: relative; }
-  .wall { position: absolute; inset: -60px; display: flex; flex-wrap: wrap; align-items: center; gap: 0 18px; transform: rotate(-6deg); font-family: 'Permanent Marker', cursive; color: rgba(0,0,0,.065); font-size: 34px; line-height: 1.1; }
-  .wall span:nth-child(7n) { color: rgba(217,35,45,.15); }
+  body { background: var(--bg); color: var(--ink); font-family: 'Archivo', sans-serif; position: relative; }
+  .deco { position: absolute; inset: 0; }
+  .wall { position: absolute; inset: -60px; display: flex; flex-wrap: wrap; align-items: center; gap: 0 18px; transform: rotate(var(--wall-tilt)); font-family: 'Permanent Marker', cursive; color: var(--wall); font-size: 34px; line-height: 1.1; }
+  .wall span:nth-child(7n) { color: var(--wall-hi); }
   .wall span:nth-child(3n) { font-size: 48px; }
   .copy { position: absolute; left: 64px; top: 64px; bottom: 64px; width: 600px; display: flex; flex-direction: column; justify-content: space-between; }
   .site { font-weight: 800; font-stretch: 112%; font-size: 26px; }
-  .site b { color: #D9232D; }
+  .site b { color: var(--brand); }
   h1 { font-weight: 900; font-stretch: 82%; font-size: 68px; line-height: .98; letter-spacing: -.02em; margin: 0; }
-  .badge { position: absolute; right: 60px; top: 50%; width: 420px; margin-top: -170px; background: #D9232D; border-radius: 24px; padding: 0 14px; transform: rotate(-4deg); color: #fff; text-align: center; box-shadow: 0 26px 44px -20px rgba(40,10,10,.6); }
+  .badge { position: absolute; right: 60px; top: 50%; width: 420px; margin-top: -170px; background: var(--badge); border-radius: 24px; padding: 0 14px; transform: rotate(var(--tilt)); color: var(--badge-ink); text-align: center; box-shadow: 0 26px 44px -20px rgba(0,0,0,.6); }
   .hello { display: block; font-weight: 900; font-stretch: 125%; font-size: 60px; padding-top: 20px; line-height: 1; letter-spacing: .03em; white-space: nowrap; }
   .sub { display: block; font-weight: 600; font-size: 22px; padding: 4px 0 12px; }
-  .name { background: #fff; color: #000; border-radius: 6px; height: 170px; display: grid; place-items: center; font-family: 'Permanent Marker', cursive; font-size: 92px; white-space: nowrap; overflow: hidden; }
+  .name { background: var(--card); color: var(--card-ink); border-radius: 6px; height: 170px; display: grid; place-items: center; font-family: 'Permanent Marker', cursive; font-size: 92px; white-space: nowrap; overflow: hidden; }
   .name span { transform: rotate(-2deg); }
   .foot { height: 26px; }
+  /* Badge on the left, title on the right */
+  body.flip .copy { left: auto; right: 64px; width: 560px; }
+  body.flip .badge { right: auto; left: 60px; }
 </style>
 </head>
 <body>
+  <div class="deco" id="deco"></div>
   <div class="wall" id="wall"></div>
   <div class="copy">
     <div class="site">The Society of <b>Daves</b></div>
@@ -32,8 +40,69 @@
   </div>
   <div class="badge"><span class="hello" id="top"></span><span class="sub">my name is</span><div class="name"><span id="name"></span></div><div class="foot"></div></div>
   <script>
+    // vars: CSS custom properties. words: what the background is written in.
+    // deco: extra shapes behind everything. flip: badge on the left.
+    const THEMES = {
+      classic: {},
+      gifts: {
+        vars: { '--bg': '#145A3A', '--ink': '#fff', '--brand': '#FFD23F', '--wall': 'rgba(255,255,255,.08)', '--wall-hi': 'rgba(255,210,63,.22)', '--badge': '#D9232D', '--tilt': '5deg' },
+        words: ['Dave', '★', 'Dave', '✱'],
+        // A ribbon and bow, as if the cover were wrapped
+        deco: `<div style="position:absolute;top:0;bottom:0;left:836px;width:56px;background:#D9232D;box-shadow:inset 0 0 0 6px #B81C25"></div>
+               <div style="position:absolute;left:0;right:0;top:560px;height:40px;background:#D9232D;box-shadow:inset 0 0 0 5px #B81C25"></div>`,
+      },
+      gift: {
+        vars: { '--bg': '#D9232D', '--ink': '#fff', '--brand': '#FFD23F', '--wall': 'rgba(255,255,255,.1)', '--wall-hi': 'rgba(255,210,63,.3)', '--badge': '#145A3A', '--tilt': '-6deg' },
+        words: ['Dave', '✱'],
+        flip: true,
+      },
+      meaning: {
+        vars: { '--bg': '#F6EBD3', '--ink': '#2B1D0E', '--brand': '#9A3412', '--wall': 'rgba(43,29,14,.07)', '--wall-hi': 'rgba(154,52,18,.16)', '--badge': '#2B1D0E', '--card': '#FFF8E8', '--tilt': '3deg', '--wall-tilt': '0deg' },
+        words: ['beloved', 'דָּוִד', 'Dawid', 'Dave', 'David'],
+        flip: true,
+      },
+      numbers: {
+        vars: { '--bg': '#0F2A4A', '--ink': '#fff', '--brand': '#5EC2FF', '--wall': 'rgba(255,255,255,.06)', '--wall-hi': 'rgba(94,194,255,.18)', '--badge': '#1D7BD8', '--tilt': '-3deg', '--wall-tilt': '0deg' },
+        words: ['1960', '#1', '85,929', '3.7m', '#31'],
+        // A rising-then-falling bar chart along the bottom
+        deco: (() => {
+          const h = [40, 70, 110, 170, 230, 260, 250, 210, 170, 140, 120, 100, 90, 80];
+          return h.map((v, i) => `<div style="position:absolute;bottom:0;left:${20 + i * 84}px;width:60px;height:${v}px;background:rgba(94,194,255,${i === 5 ? .45 : .16})"></div>`).join('');
+        })(),
+      },
+      famous: {
+        vars: { '--bg': '#111', '--ink': '#fff', '--brand': '#F5C542', '--wall': 'rgba(245,197,66,.09)', '--wall-hi': 'rgba(245,197,66,.25)', '--badge': '#F5C542', '--badge-ink': '#111', '--tilt': '-5deg' },
+        words: ['★', 'Dave', '★', 'David'],
+        // Spotlight on the badge
+        deco: `<div style="position:absolute;right:-100px;top:-120px;width:760px;height:860px;background:radial-gradient(closest-side, rgba(255,255,255,.18), transparent)"></div>`,
+      },
+      languages: {
+        vars: { '--bg': '#0E6B6B', '--ink': '#fff', '--brand': '#FFB23F', '--wall': 'rgba(255,255,255,.09)', '--wall-hi': 'rgba(255,178,63,.28)', '--badge': '#FFB23F', '--badge-ink': '#0E3B3B', '--tilt': '4deg', '--wall-tilt': '-3deg' },
+        words: ['Dafydd', 'Davide', 'Dawid', 'Dávid', 'Dawud', 'Dovid', 'Davi', 'Taavetti', 'Davit', 'Dewi', 'Давид', 'ダビデ', 'داود'],
+        flip: true,
+      },
+      wales: {
+        vars: { '--bg': '#fff', '--ink': '#111', '--brand': '#00AB39', '--wall': 'rgba(0,0,0,.05)', '--wall-hi': 'rgba(0,171,57,.18)', '--badge': '#FFD200', '--badge-ink': '#111', '--tilt': '-3deg' },
+        words: ['Dewi', '1 March', 'Dydd Gŵyl Dewi', '✿'],
+        // The Welsh flag's green lower half
+        deco: `<div style="position:absolute;left:0;right:0;bottom:0;height:315px;background:#00AB39"></div>`,
+      },
+      cyber: {
+        vars: { '--bg': '#0A0A12', '--ink': '#FCEE0A', '--brand': '#00F0FF', '--wall': 'rgba(0,240,255,.08)', '--wall-hi': 'rgba(255,0,110,.3)', '--badge': '#FCEE0A', '--badge-ink': '#0A0A12', '--card': '#0A0A12', '--card-ink': '#00F0FF', '--tilt': '-2deg', '--wall-tilt': '0deg' },
+        words: ['DAVID', 'D', '01000100', 'NIGHT CITY'],
+        // Scanlines and a hot-pink slash
+        deco: `<div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 2px, transparent 2px 5px)"></div>
+               <div style="position:absolute;left:-40px;right:-40px;top:596px;height:14px;background:#FF006E;transform:rotate(-4deg)"></div>`,
+      },
+    };
+
     const p = new URLSearchParams(location.search);
-    document.getElementById('wall').innerHTML = '<span>Dave</span>'.repeat(400);
+    const t = THEMES[p.get('theme')] || THEMES.classic;
+    for (const [k, v] of Object.entries(t.vars || {})) document.documentElement.style.setProperty(k, v);
+    if (t.flip) document.body.classList.add('flip');
+    document.getElementById('deco').innerHTML = t.deco || '';
+    const words = t.words || ['Dave'];
+    document.getElementById('wall').innerHTML = Array.from({ length: 400 }, (_, i) => `<span>${words[i % words.length]}</span>`).join('');
     document.getElementById('title').textContent = p.get('title') || 'The Society of Daves';
     document.getElementById('top').textContent = p.get('top') || 'HELLO';
     const name = p.get('name') || 'Dave';

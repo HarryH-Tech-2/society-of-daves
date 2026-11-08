@@ -8,6 +8,7 @@ Key facts:
 - St David's Day, for the patron saint of Wales, is on 1 March.
 - Membership: $1/month via Stripe, cancel any time at https://societyofdaves.com/api/manage. Contact: hello@societyofdaves.com.
 - Gift memberships: $6 for 6 months or $12 for 12 months, paid once, delivered by email on Christmas Day or a chosen date: https://societyofdaves.com/gift
+- Gift ideas for someone called Dave or David (personalised, funny, last-minute, by budget): https://societyofdaves.com/blog/gifts-for-daves/
 
 ## Pages
 - [Home](https://societyofdaves.com/): what the Society is, facts about the name Dave, notable Daves, membership
@@ -16,7 +17,7 @@ Key facts:
 
 ## Articles
 - [Why is D called David in Cyberpunk: Edgerunners 2?](https://societyofdaves.com/blog/why-is-d-called-david-cyberpunk-edgerunners-2/): D, the netrunner in Cyberpunk: Edgerunners 2, is also called David. Here is who he is, why the name matters, and how he mirrors David Martinez from the first series. Spoilers.
-- [Gifts for Daves: 25 ideas for the Dave in your life](https://societyofdaves.com/blog/gifts-for-daves/): The best gifts for someone called Dave, sorted by type of Dave and by budget: music Daves, nature Daves, office Daves, Welsh Daves and the Dave who has everything.
+- [Gifts for Dave: 30 gift ideas for anyone called Dave or David](https://societyofdaves.com/blog/gifts-for-daves/): The best gifts for someone called Dave or David: personalised, funny and last-minute ideas, sorted by type of Dave and by budget, from a $6 gift membership to a trip to Florence.
 - [What does the name Dave mean? Is Dave short for David?](https://societyofdaves.com/blog/what-does-the-name-dave-mean/): Yes, Dave is short for David, a Hebrew name usually translated as "beloved". Here is where the name comes from, how it spread, and how Dave became the default nickname.
 - [How many Davids are there in the world? The name David in numbers](https://societyofdaves.com/blog/how-popular-is-the-name-david/): About 13.4 million people worldwide are called David, making it the 13th most common first name on Earth. Plus a century of US data: number one in 1960, 31st in 2024.
 - [Famous Daves: the most notable people called Dave and David](https://societyofdaves.com/blog/famous-daves/): From David Bowie and David Attenborough to Dave Grohl and Michelangelo's statue: the notable Daves in music, TV, film, art, sport and history.

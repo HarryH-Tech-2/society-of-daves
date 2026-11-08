@@ -1,6 +1,7 @@
 // Generates the blog, sitemap, RSS feed and llms.txt into public/, and
 // refreshes the generated regions of public/index.html. Run: npm run build
 
+import { existsSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -34,6 +35,27 @@ function breadcrumbs(items) {
 }
 
 const coverOf = (p) => `/images/covers/${p.slug}.png`;
+
+// Every post needs its own cover, or the blog shows a broken image.
+const missingCovers = posts.filter((p) => !existsSync(join(PUBLIC, coverOf(p))));
+if (missingCovers.length) {
+  throw new Error(`Missing cover image for: ${missingCovers.map((p) => p.slug).join(', ')}. Add a render line to scripts/covers.sh and run it.`);
+}
+
+// For list posts (`listSchema: true`): every numbered idea, taken from the
+// bold lead-in of each <li> inside an <ol>, as ItemList structured data.
+function itemListSchema(post) {
+  if (!post.listSchema) return null;
+  const items = [...post.body.matchAll(/<ol[^>]*>([\s\S]*?)<\/ol>/g)]
+    .flatMap(([, ol]) => [...ol.matchAll(/<li><strong>([\s\S]*?)<\/strong>/g)].map(([, s]) => stripTags(s).replace(/\.$/, '')));
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: post.title,
+    numberOfItems: items.length,
+    itemListElement: items.map((name, i) => ({ '@type': 'ListItem', position: i + 1, name })),
+  };
+}
 
 function figure(key) {
   const im = images[key];
@@ -85,7 +107,8 @@ function renderPost(post) {
     organization,
     breadcrumbs([['Home', '/'], ['Blog', '/blog/'], [post.title, path]]),
     faqSchema(post.faqs),
-  ];
+    itemListSchema(post),
+  ].filter(Boolean);
 
   return `<!doctype html>
 <html lang="en">
@@ -101,7 +124,7 @@ function renderPost(post) {
       <header class="article-head">
         <h1>${esc(post.title)}</h1>
         <p class="dek">${esc(post.dek)}</p>
-        <p class="byline">By the Society of Daves. <time datetime="${post.date}">${formatDate(post.date)}</time>. ${readingMinutes(post.body)} minute read.</p>
+        <p class="byline">By the Society of Daves. <time datetime="${post.date}">${formatDate(post.date)}</time>.${post.updated && post.updated !== post.date ? ` Updated <time datetime="${post.updated}">${formatDate(post.updated)}</time>.` : ''} ${readingMinutes(post.body)} minute read.</p>
       </header>
 
       <figure class="post-cover">
@@ -241,6 +264,7 @@ Key facts:
 - St David's Day, for the patron saint of Wales, is on 1 March.
 - Membership: $1/month via Stripe, cancel any time at ${SITE.url}/api/manage. Contact: ${SITE.email}.
 - Gift memberships: $6 for 6 months or $12 for 12 months, paid once, delivered by email on Christmas Day or a chosen date: ${SITE.url}/gift
+- Gift ideas for someone called Dave or David (personalised, funny, last-minute, by budget): ${SITE.url}/blog/gifts-for-daves/
 
 ## Pages
 - [Home](${SITE.url}/): what the Society is, facts about the name Dave, notable Daves, membership

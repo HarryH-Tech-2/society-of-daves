@@ -51,19 +51,23 @@ export const posts = [
 
   {
     slug: 'gifts-for-daves',
-    title: 'Gifts for Daves: 25 ideas for the Dave in your life',
-    description: 'The best gifts for someone called Dave, sorted by type of Dave and by budget: music Daves, nature Daves, office Daves, Welsh Daves and the Dave who has everything.',
+    title: 'Gifts for Dave: 30 gift ideas for anyone called Dave or David',
+    description: 'The best gifts for someone called Dave or David: personalised, funny and last-minute ideas, sorted by type of Dave and by budget, from a $6 gift membership to a trip to Florence.',
     date: '2026-10-26',
+    updated: '2026-11-08',
+    listSchema: true,
     dek: 'Every Dave has received a mug that says "Dave". This guide tries harder than that, though we do include the mug.',
     takeaways: [
-      'The best Dave gifts lean on what the name is famous for: Bowie, Attenborough, Michelangelo, Wales and the eternal office name badge.',
-      'Under $10: name badges, daffodil bulbs, a Dave desk sign. Under $50: vinyl, a documentary box set, a personalised mug. Bigger: a trip to Florence or Pembrokeshire.',
-      'Good gift dates for a Dave: their birthday, the holidays, and St David\'s Day on 1 March.',
+      'The best gift for someone called Dave plays on what the name is famous for: a David Bowie record, a David Attenborough box set, a small Michelangelo\'s David, or a print explaining that David means "beloved".',
+      'Under $10: name badges, daffodil bulbs, a Society of Daves gift membership ($6). $10 to $50: vinyl, a box set, a personalised mug. Bigger: a trip to Florence or St Davids in Wales.',
+      'Funny gifts for Dave: a "World\'s Okayest Dave" T-shirt, a Dave rubber stamp, or an "Other Dave" desk sign for the office.',
+      'Last-minute gifts that arrive instantly: a Society of Daves gift membership by email, a record-shop e-gift card, or a playlist of famous Daves.',
+      'Good dates for a Dave gift: their birthday, Christmas (Friday 25 December 2026) and St David\'s Day (Monday 1 March 2027).',
     ],
     body: `
-<p>Buying for a Dave is harder than it looks. The name is so common that the obvious ideas have been done to them several times: the mug, the keyring, the joke card that says "Dave" on it. The good news is that the name David comes with a lot of history attached, and almost all of it can be turned into a present. Here are 25 ideas, sorted by the kind of Dave you're buying for. Short on time? Skip to the end for our <a href="/gift">Christmas gift membership</a>, which arrives in their inbox on Christmas morning.</p>
+<p><strong>The best gift for someone called Dave is one that plays on the name itself.</strong> David comes with a lot of famous company (Bowie, Attenborough, Beckham, Michelangelo's statue, the patron saint of Wales) and almost all of it can be turned into a present. Buying for a Dave is harder than it looks, because the obvious ideas have been done to them several times: the mug, the keyring, the joke card that says "Dave" on it. Here are 30 better ideas, sorted by the kind of Dave you're buying for, then by budget. Everything here works for a David, a Davey or a Dai too. Short on time? Jump to <a href="#last-minute">last-minute gifts for Dave</a>.</p>
 
-<h2>Gifts for any Dave</h2>
+<h2>Personalised gifts for any Dave</h2>
 <p>These work whether your Dave is 9 or 90.</p>
 <ol>
   <li><strong>A box of "HELLO my name is" badges, already filled in.</strong> Write "Dave" on every single one. It's a lifetime supply, and it saves them the effort at every conference they'll ever attend.</li>
@@ -121,12 +125,31 @@ export const posts = [
   <li><strong>A Society of Daves gift membership.</strong> Six months for $6 or a year for $12, paid once. We email it to them on Christmas morning with your message, then they get The Dave Dispatch, a monthly newsletter about their own name. Nothing renews, and they never need to cancel. <a href="/gift">Give a gift membership</a>.</li>
 </ol>
 
+<h2>Funny gifts for Dave</h2>
+<p>For the Dave who has a sense of humour about being one of millions.</p>
+<ol start="26">
+  <li><strong>A "World's Okayest Dave" T-shirt.</strong> Print-on-demand shops will make one in minutes. It's honest, and it lowers expectations at family gatherings.</li>
+  <li><strong>A rubber stamp that says "DAVE".</strong> For signing birthday cards, approving documents and marking territory in the office fridge.</li>
+  <li><strong>A doormat that says "Dave lives here".</strong> So visitors know they've found the right Dave, which in some streets is genuinely useful.</li>
+</ol>
+
+<h2 id="last-minute">Last-minute gifts for Dave</h2>
+<p>Forgot? These arrive the same day, by email or by link, so nobody needs to know.</p>
+<ol start="29">
+  <li><strong>A record-shop e-gift card, labelled "The Dave Record Fund".</strong> Pair it with a list of the Bowie, Grohl and Brubeck albums from the music section above.</li>
+  <li><strong>A playlist of famous Daves.</strong> Bowie, Dave Grohl, Dave Brubeck, David Byrne, David Gilmour and Dave Matthews, shared as a link with a short note. It's free and it takes ten minutes. If you want something to arrive in their inbox too, a <a href="/gift">Society gift membership</a> can be sent "straight away" as well as on Christmas morning.</li>
+</ol>
+
+<h2>Gifts for a David who isn't a Dave</h2>
+<p>Some Davids insist on all five letters. Every idea above still works, because they're all about the name David. For a Welsh David, lean on <strong>Dafydd</strong>, <strong>Dewi</strong> and <strong>Dai</strong> instead: our guide to <a href="/blog/david-in-other-languages/">David in other languages</a> has the right spelling for a mug or a print, in Welsh and about 20 other languages.</p>
+
 <h2>Dave gifts by budget</h2>
 <table>
   <thead><tr><th scope="col">Budget</th><th scope="col">Ideas</th></tr></thead>
   <tbody>
+    <tr><td>Free</td><td>A famous-Daves playlist, a handwritten "Certificate of Daveness"</td></tr>
     <tr><td>Under $10</td><td>Name badges, daffodil bulbs, a printed "Other Dave" desk sign, a bird feeder, a <a href="/gift">6-month Society gift membership</a> ($6)</td></tr>
-    <tr><td>$10 to $50</td><td>Personalised mug, framed name print, a vinyl record, a documentary box set, a magnetic David</td></tr>
+    <tr><td>$10 to $50</td><td>Personalised mug, framed name print, a vinyl record, a documentary box set, a magnetic David, a "World's Okayest Dave" T-shirt, a <a href="/gift">12-month gift membership</a> ($12)</td></tr>
     <tr><td>$50 and up</td><td>A replica statue, gig tickets, a custom football shirt, a trip to Florence or Pembrokeshire</td></tr>
   </tbody>
 </table>
@@ -136,8 +159,12 @@ export const posts = [
 `,
     faqs: [
       { q: 'What is a good gift for someone called Dave?', a: 'Gifts that play on the name\'s history work best: a David Bowie or Foo Fighters record, a David Attenborough box set, a small replica of Michelangelo\'s David, daffodil bulbs for St David\'s Day, or a framed print explaining that David means "beloved".' },
-      { q: 'What can I get a Dave for under $10?', a: 'A box of "HELLO my name is" badges with Dave written on every one, a bag of daffodil bulbs, or a printed "Other Dave" desk sign for the office.' },
-      { q: 'When is St David\'s Day?', a: 'St David\'s Day is on 1 March every year. It celebrates Saint David, the patron saint of Wales, and it\'s a good excuse to give any Dave a small present.' },
+      { q: 'What is a funny gift for a Dave?', a: 'A "World\'s Okayest Dave" T-shirt, a rubber stamp that says DAVE, a "Dave lives here" doormat, or an "Other Dave" desk sign for an office with more than one Dave.' },
+      { q: 'What is a good last-minute gift for Dave?', a: 'Something that arrives by email: a record-shop e-gift card, a playlist of famous Daves, or a Society of Daves gift membership, which can be sent straight away for $6.' },
+      { q: 'What do you get a Dave who has everything?', a: 'Something about their name rather than another thing for the shelf: a bench or star named "Dave", the 1993 film Dave, or a Society of Daves gift membership, which brings a newsletter about their own name every month.' },
+      { q: 'What can I get a Dave for under $10?', a: 'A box of "HELLO my name is" badges with Dave written on every one, a bag of daffodil bulbs, a printed "Other Dave" desk sign, or a 6-month Society of Daves gift membership for $6.' },
+      { q: 'Do these gift ideas work for someone called David?', a: 'Yes. They are all based on the name David, so they suit a David, Dave, Davey or Dai. For a Welsh David, use Dafydd or Dewi on anything personalised.' },
+      { q: 'When is St David\'s Day?', a: 'St David\'s Day is on 1 March every year; in 2027 it falls on a Monday. It celebrates Saint David, the patron saint of Wales, and it\'s a good excuse to give any Dave a small present.' },
       { q: 'Can I give someone a Society of Daves membership?', a: 'Yes. A <a href="/gift">gift membership</a> is $6 for 6 months or $12 for 12 months, paid once. We email it to them on Christmas Day, straight away, or on a date you choose, with your message. Nothing renews.' },
     ],
     sources: [
