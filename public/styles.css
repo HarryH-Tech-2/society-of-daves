@@ -1074,6 +1074,20 @@ thead th { border-bottom: 2px solid var(--ink); font-weight: 800; }
 .cta-band p { margin: 0 0 22px; }
 .cta-band .button { background: var(--paper); color: var(--ink); }
 .cta-band .button:hover { background: var(--highlight); color: var(--ink); }
+.cta-band .button { text-decoration: none; }
+.cta-band .cta-alt { margin: 18px 0 0; font-size: var(--step--1); font-weight: 600; }
+.cta-band .cta-alt a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.cta-band .cta-alt a:hover { color: var(--highlight); }
+
+/* A one-line gift suggestion inside a post. */
+.gift-nudge {
+  margin: 28px 0;
+  padding: 14px 18px;
+  background: var(--highlight);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: 0 4px 0 var(--ink);
+}
 
 /* ---------- Gift page ---------- */
 

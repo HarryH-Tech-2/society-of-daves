@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { posts } from '../content/posts.mjs';
 import { images } from '../content/images.mjs';
 import {
-  SITE, esc, stripTags, head, header, footer, footerHtml, joinCta, faqList, faqSchema, organization, daveChart, GOOGLE_TAG,
+  SITE, esc, stripTags, head, header, footer, footerHtml, joinCta, giftCta, giftNudge, faqList, faqSchema, organization, daveChart, GOOGLE_TAG,
 } from './site.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -74,6 +74,7 @@ function renderBody(html) {
   return html
     .replace(/<!-- figure:(\w+) -->/g, (_, key) => figure(key))
     .replace('<!-- chart -->', daveChart())
+    .replace('<!-- gift-nudge -->', giftNudge())
     .replace(/<a href="(https?:\/\/[^"]+)"/g, '<a href="$1" target="_blank" rel="noopener"');
 }
 
@@ -157,7 +158,7 @@ ${post.sources.map(([name, url]) => `          <li><a href="${esc(url)}" rel="no
       </section>
     </article>
 
-    <div class="wrap">${joinCta()}</div>
+    <div class="wrap">${post.cta === 'gift' ? giftCta() : joinCta()}</div>
 
     <section class="wrap related" aria-labelledby="related-title">
       <h2 id="related-title">More from the Society</h2>

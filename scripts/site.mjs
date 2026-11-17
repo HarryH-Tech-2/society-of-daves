@@ -161,6 +161,21 @@ export const joinCta = () => `<aside class="cta-band" aria-labelledby="cta-title
   </div>
 </aside>`;
 
+// For posts whose readers mostly aren't Daves themselves (fans, gift
+// shoppers): sell the gift membership, with joining as the small print.
+export const giftCta = () => `<aside class="cta-band cta-gift" aria-labelledby="cta-title">
+  <div class="dave-wall" aria-hidden="true"></div>
+  <div class="cta-inner">
+    <h2 id="cta-title">Know a Dave? Sign them up</h2>
+    <p>Give the Dave in your life a gift membership: The Dave Dispatch, a monthly email about their own name. $6 for 6 months, paid once, and nothing renews. We can send it on Christmas morning with your message.</p>
+    <a class="button" href="/gift">Give a Dave a membership</a>
+    <p class="cta-alt">Are you a Dave yourself? <a href="/#join">Join for $1 a month</a>.</p>
+  </div>
+</aside>`;
+
+// A one-line nudge to drop into a post body with <!-- gift-nudge -->.
+export const giftNudge = () => `<p class="gift-nudge"><strong>Know a David who'd enjoy this?</strong> <a href="/gift">Give them a Society of Daves membership</a>: a monthly email about their own name, $6 for 6 months, nothing renews.</p>`;
+
 export function faqList(faqs) {
   return `<div class="faq">
 ${faqs.map((f) => `    <details>

@@ -6,6 +6,7 @@
 export const posts = [
   {
     slug: 'why-is-d-called-david-cyberpunk-edgerunners-2',
+    cta: 'gift', // readers are mostly fans and gift-buyers, not Daves
     title: 'Why is D called David in Cyberpunk: Edgerunners 2?',
     description: 'D, the netrunner in Cyberpunk: Edgerunners 2, is also called David. Here is who he is, why the name matters, and how he mirrors David Martinez from the first series. Spoilers.',
     date: '2026-11-02',
@@ -35,6 +36,7 @@ export const posts = [
 
 <h2>Does D count as a Dave?</h2>
 <p>Under Article 1 of the <a href="/#bylaws">Society's bylaws</a>, anyone called David is a full member, and nicknames are no barrier. D is therefore welcome, though the Society would ask him to leave the cyberware at the door.</p>
+<!-- gift-nudge -->
 `,
     faqs: [
       { q: 'What is D\'s real name in Cyberpunk: Edgerunners 2?', a: 'D is also called David. He is a nomad netrunner from the Snake Nation clan.' },
@@ -51,6 +53,7 @@ export const posts = [
 
   {
     slug: 'gifts-for-daves',
+    cta: 'gift', // readers are mostly fans and gift-buyers, not Daves
     title: 'Gifts for Dave: 30 gift ideas for anyone called Dave or David',
     description: 'The best gifts for someone called Dave or David: personalised, funny and last-minute ideas, sorted by type of Dave and by budget, from a $6 gift membership to a trip to Florence.',
     date: '2026-10-26',
@@ -316,6 +319,7 @@ export const posts = [
 
   {
     slug: 'famous-daves',
+    cta: 'gift', // readers are mostly fans and gift-buyers, not Daves
     title: 'Famous Daves: the most notable people called Dave and David',
     description: 'From David Bowie and David Attenborough to Dave Grohl and Michelangelo\'s statue: the notable Daves in music, TV, film, art, sport and history.',
     date: '2026-10-26',
@@ -353,6 +357,7 @@ export const posts = [
   <li><strong><a href="https://en.wikipedia.org/wiki/David_Hockney">David Hockney</a></strong> is one of Britain's most celebrated painters, known for his California swimming pools.</li>
   <li><strong>David Beckham</strong> is the footballer whose free kicks gave the 2002 film <i>Bend It Like Beckham</i> its title.</li>
 </ul>
+<!-- gift-nudge -->
 <p>Buying for a Dave who loves any of these? Our <a href="/blog/gifts-for-daves/">gift guide for Daves</a> has a section for music Daves, nature Daves and culture Daves.</p>
 
 <h2>Famous Daves in history</h2>
@@ -477,6 +482,7 @@ export const posts = [
 
   {
     slug: 'st-davids-day',
+    cta: 'gift', // readers are mostly fans and gift-buyers, not Daves
     title: 'When is St David\'s Day 2027? Monday 1 March, plus 10 facts about Saint David',
     description: 'St David\'s Day is on 1 March every year; in 2027 that\'s a Monday. What the day is, 10 facts about Saint David, why the Welsh wear daffodils and leeks, and how to celebrate.',
     date: '2026-10-26',
