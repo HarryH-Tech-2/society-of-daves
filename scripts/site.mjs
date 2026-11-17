@@ -79,6 +79,8 @@ export const header = () => `<a class="skip" href="#main">Skip to content</a>
 // The site footer. The hand-written pages in public/ get the same markup
 // copied in by build.mjs, so edit it here only.
 export const footerHtml = `<footer class="footer">
+    <div class="dave-wall" aria-hidden="true"></div>
+    <div class="footer-glow" aria-hidden="true"></div>
     <div class="wrap footer-main">
       <div class="member-card" role="img" aria-label="A Society of Daves membership card. Name: Dave. Member number 3,700,001. Valid for life. Signed, Dave.">
         <div class="member-card-head" aria-hidden="true">

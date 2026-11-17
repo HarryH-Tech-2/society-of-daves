@@ -606,18 +606,47 @@ mark {
 .footer {
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 18% 40%, rgba(217, 35, 45, 0.28), transparent 45%),
-    var(--ink);
+  isolation: isolate;
+  background: #070707;
   color: var(--paper);
   font-size: var(--step--1);
   border-top: 6px solid var(--red);
 }
 
+/* Footer background: a dark wall of Daves under a red spotlight, with a
+   halftone dot screen fading in from the bottom. */
+.footer > .wrap { max-width: 1360px; }
+.footer .dave-wall {
+  color: rgba(255, 255, 255, 0.045);
+  -webkit-mask-image: radial-gradient(ellipse 70% 90% at 25% 45%, #000 10%, rgba(0,0,0,0.35) 70%);
+          mask-image: radial-gradient(ellipse 70% 90% at 25% 45%, #000 10%, rgba(0,0,0,0.35) 70%);
+}
+.footer .dave-wall span:nth-child(7n) { color: rgba(217, 35, 45, 0.22); }
+.footer .dave-wall span:nth-child(13n) { color: rgba(255, 240, 77, 0.12); }
+.footer-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 22% 48%, rgba(217, 35, 45, 0.55), transparent 38%),
+    radial-gradient(circle at 88% 8%, rgba(255, 240, 77, 0.12), transparent 30%),
+    radial-gradient(circle at 70% 110%, rgba(28, 63, 170, 0.35), transparent 45%),
+    radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1.4px) 0 0 / 7px 7px;
+}
+.footer::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: repeating-linear-gradient(90deg, var(--highlight) 0 22px, transparent 22px 34px);
+  opacity: 0.85;
+}
+
 /* The footer centrepiece: your Society membership card. */
 .member-card {
   position: relative;
-  width: min(100% - 30px, 400px);
+  width: min(100% - 30px, 460px);
   aspect-ratio: 1.586;
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -645,7 +674,7 @@ mark {
   border-radius: 18px 18px 0 0;
   font-weight: 900;
   font-stretch: 112%;
-  font-size: clamp(0.72rem, 2.6vw, 0.86rem);
+  font-size: clamp(0.72rem, 2.6vw, 0.95rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -681,7 +710,7 @@ mark {
 .member-fields .member-name {
   font-family: var(--marker);
   font-weight: 400;
-  font-size: clamp(1.6rem, 6vw, 2.1rem);
+  font-size: clamp(1.6rem, 6vw, 2.5rem);
   line-height: 1;
   color: var(--red);
   rotate: -3deg;
@@ -723,8 +752,8 @@ mark {
 
 .footer-main {
   display: grid;
-  grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
-  gap: clamp(40px, 7vw, 96px);
+  grid-template-columns: minmax(0, 460px) minmax(0, 1fr);
+  gap: clamp(40px, 5vw, 64px);
   align-items: center;
   padding-top: clamp(56px, 7vw, 88px);
   padding-bottom: clamp(48px, 6vw, 72px);
@@ -732,9 +761,9 @@ mark {
 
 .footer-nav {
   display: grid;
-  grid-template-columns: repeat(2, max-content);
-  justify-content: start;
-  gap: 32px clamp(40px, 6vw, 88px);
+  grid-template-columns: repeat(4, max-content);
+  justify-content: space-between;
+  gap: 32px 28px;
 }
 .footer-nav div { display: grid; align-content: start; justify-items: start; gap: 10px; }
 .footer-nav h2 {
@@ -745,7 +774,7 @@ mark {
   text-transform: uppercase;
   color: var(--red);
 }
-.footer-nav a { font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+.footer-nav a, .footer-nav button { font-size: var(--step-0); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
 .footer a:hover { color: var(--highlight); }
 .footer-nav a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 
@@ -753,6 +782,9 @@ mark {
 .footer-base p { margin: 0; padding-top: 20px; border-top: 1px solid #2A2A2A; color: #9AA1AC; }
 
 @media (min-width: 861px) { .footer-nav a, .footer-nav button { white-space: nowrap; } }
+@media (max-width: 1320px) and (min-width: 861px) {
+  .footer-nav { grid-template-columns: repeat(2, max-content); justify-content: start; column-gap: clamp(40px, 6vw, 88px); }
+}
 @media (max-width: 860px) {
   .footer-main { grid-template-columns: 1fr; justify-items: center; }
   .footer-nav { width: 100%; }
@@ -1336,6 +1368,7 @@ thead th { border-bottom: 2px solid var(--ink); font-weight: 800; }
   padding: 0;
   color: inherit;
   font: inherit;
+  font-size: var(--step-0);
   font-weight: 600;
   text-decoration: none;
   text-decoration-thickness: 2px;
