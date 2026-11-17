@@ -255,57 +255,73 @@
     }));
   });
 
-  // The badge: whatever name you type gets crossed out and corrected to Dave.
-  const DAVES = /^(dave|davey|davie|davy|david|dafydd|dai|davide|davi|dawid|dovid)$/i;
-  const input = document.getElementById('name-input');
-  const nameBox = document.getElementById('badge-name');
-  const theirName = document.getElementById('their-name');
-  const verdict = document.getElementById('name-verdict');
-  if (!input) return;
+  // The hero deck: a stack of name badges that flips through the ways to be
+  // a Dave around the world (the same list as "Dave around the world").
+  const deckName = document.getElementById('deck-name');
+  if (deckName) {
+    const NAMES = [
+      ['Dave', 'English'], ['Dafydd', 'Welsh'], ['Dàibhidh', 'Scottish Gaelic'], ['Dáibhí', 'Irish'],
+      ['Davide', 'Italian'], ['Davi', 'Brazilian Portuguese'], ['Dawid', 'Polish'], ['Dávid', 'Hungarian'],
+      ['Davíð', 'Icelandic'], ['Taavetti', 'Finnish'], ['Davit', 'Georgian'], ['Dawud', 'Arabic'],
+      ['Dovid', 'Yiddish'], ['Kawika', 'Hawaiian'],
+    ];
+    const DAVES = /^(dave|davey|davie|davy|david|dafydd|dai|davide|davi|dawid|dovid)$/i;
+    const front = document.getElementById('deck-front');
+    const lang = document.getElementById('deck-lang');
+    const count = document.getElementById('deck-count');
+    const backs = document.querySelectorAll('.deck-card');
+    const setName = (i) => {
+      const [name, language] = NAMES[i];
+      deckName.textContent = name;
+      deckName.style.setProperty('--len', String(Math.max(4, name.length)));
+      lang.textContent = language;
+      count.textContent = String(i + 1);
+    };
 
-  document.getElementById('name-try').addEventListener('submit', (e) => e.preventDefault());
-
-  input.addEventListener('input', () => {
-    const name = input.value.trim();
-    if (!name) {
-      theirName.hidden = true;
-      nameBox.classList.remove('corrected');
-      verdict.textContent = '';
-    } else if (DAVES.test(name)) {
-      theirName.hidden = true;
-      nameBox.classList.remove('corrected');
-      verdict.textContent = 'Already a Dave. Welcome home.';
+    // Arriving from someone's shared badge (/badge/Name): show their name
+    // crossed out and corrected to Dave, and hold still.
+    const sharedName = (params.get('badge') || '').trim().slice(0, 24);
+    if (sharedName) {
+      if (!DAVES.test(sharedName)) {
+        const theirName = document.getElementById('their-name');
+        theirName.textContent = sharedName;
+        theirName.hidden = false;
+        document.getElementById('badge-name').classList.add('corrected');
+        lang.textContent = 'Corrected';
+      } else {
+        deckName.textContent = sharedName;
+        deckName.style.setProperty('--len', String(Math.max(4, sharedName.length)));
+        lang.textContent = 'Already a Dave';
+      }
+      count.parentElement.hidden = true;
     } else {
-      theirName.textContent = name;
-      theirName.hidden = false;
-      nameBox.classList.add('corrected');
-      verdict.textContent = `Close enough. Welcome, Dave (formerly ${name}).`;
+      const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches || !front.animate;
+      const TILT = 'rotate(-3deg)';
+      let i = 0;
+      let busy = false;
+      setInterval(async () => {
+        if (document.hidden || busy) return;
+        busy = true;
+        i = (i + 1) % NAMES.length;
+        if (still) { setName(i); busy = false; return; }
+        await front.animate(
+          [{ transform: `${TILT} rotateY(0deg)` }, { transform: `${TILT} rotateY(90deg) scale(0.96)` }],
+          { duration: 220, easing: 'cubic-bezier(.5, 0, .9, .5)' },
+        ).finished.catch(() => {});
+        setName(i);
+        deckName.classList.remove('write-in', 'rewrite');
+        void deckName.offsetWidth; // restart the write-in animation
+        deckName.classList.add('rewrite');
+        front.animate(
+          [{ transform: `${TILT} rotateY(-90deg) scale(0.96)` }, { transform: `${TILT} rotateY(0deg)` }],
+          { duration: 420, easing: 'cubic-bezier(.2, 1.4, .4, 1)' },
+        );
+        backs.forEach((card, n) => card.animate(
+          [{ translate: '0 0' }, { translate: `${n ? -10 : 8}px ${n ? 6 : -6}px` }, { translate: '0 0' }],
+          { duration: 520, easing: 'ease-in-out', delay: 60 * n },
+        ));
+        busy = false;
+      }, 2800);
     }
-    const badgeName = name || 'Dave';
-    document.getElementById('badge-download').href = `/api/badge?name=${encodeURIComponent(badgeName)}&download=1`;
-    document.getElementById('badge-share-status').textContent = '';
-  });
-
-  // Share a link whose preview is this badge (see api/share.js).
-  document.getElementById('badge-share').addEventListener('click', () => {
-    const name = input.value.trim().slice(0, 24) || 'Dave';
-    const isDave = DAVES.test(name);
-    share({
-      url: `${location.origin}/badge/${encodeURIComponent(name)}`,
-      title: 'The Society of Daves',
-      text: isDave ? `${name} here. I'm a Dave, and there's a Society now.` : `My name is ${name}, but the Society of Daves says it's Dave now.`,
-      status: document.getElementById('badge-share-status'),
-      contentType: 'badge',
-    });
-  });
-  document.getElementById('badge-download').addEventListener('click', () => {
-    if (typeof window.gtag === 'function') window.gtag('event', 'share', { method: 'download', content_type: 'badge', item_id: 'badge' });
-  });
-
-  // Arriving from someone's shared badge: show their name on it.
-  const sharedName = (params.get('badge') || '').trim().slice(0, 24);
-  if (sharedName) {
-    input.value = sharedName;
-    input.dispatchEvent(new Event('input'));
   }
 })();

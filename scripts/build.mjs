@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { posts } from '../content/posts.mjs';
 import { images } from '../content/images.mjs';
 import {
-  SITE, esc, stripTags, head, header, footer, joinCta, faqList, faqSchema, organization, daveChart, GOOGLE_TAG,
+  SITE, esc, stripTags, head, header, footer, footerHtml, joinCta, faqList, faqSchema, organization, daveChart, GOOGLE_TAG,
 } from './site.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -324,12 +324,15 @@ await buildPage('gift.html', { ld: [organization, breadcrumbs([['Home', '/'], ['
 // up to the config call is swapped; anything a page adds after it (the
 // purchase event on gift-sent.html) and the closing </script> stay put.
 const GTAG_BLOCK = /^[ \t]*<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js[\s\S]*?gtag\('config'[^\n]*/m;
+// Same for the footer: one copy, in site.mjs.
+const FOOTER_BLOCK = /<footer class="footer">[\s\S]*?<\/footer>/;
 const tagUpToConfig = GOOGLE_TAG.slice(0, GOOGLE_TAG.lastIndexOf('\n'));
 for (const file of ['index.html', 'gift.html', 'gift-sent.html', 'welcome.html', 'privacy.html', 'terms.html']) {
   const path = join(PUBLIC, file);
   const html = await readFile(path, 'utf8');
   if (!GTAG_BLOCK.test(html)) throw new Error(`${file} is missing the Google tag`);
-  await writeFile(path, html.replace(GTAG_BLOCK, () => tagUpToConfig));
+  if (!FOOTER_BLOCK.test(html)) throw new Error(`${file} is missing the footer`);
+  await writeFile(path, html.replace(GTAG_BLOCK, () => tagUpToConfig).replace(FOOTER_BLOCK, () => footerHtml));
 }
 await write('blog/index.html', renderIndex());
 for (const post of posts) await write(`blog/${post.slug}/index.html`, renderPost(post));

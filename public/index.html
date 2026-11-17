@@ -65,28 +65,30 @@
           <p class="fine">Cancel any time. Secure payment by Stripe.</p>
         </div>
 
-        <div class="badge-stage" id="badge">
-          <div class="badge" role="img" aria-label="A red name badge reading: Hello, my name is Dave">
-            <span class="badge-hello" aria-hidden="true">HELLO</span>
-            <span class="badge-sub" aria-hidden="true">my name is</span>
-            <div class="badge-name" id="badge-name" aria-hidden="true">
-              <span class="marker write-in">Dave</span>
-              <span class="their-name" id="their-name" hidden></span>
+        <div class="deck-stage" id="badge">
+          <div class="deck" role="img" aria-label="A stack of red name badges, each reading Hello, my name is Dave in another language: Dafydd, Davide, Dawid, Dávid, Kawika and more">
+            <div class="badge deck-card deck-card-3" aria-hidden="true"><span class="badge-hello">HELLO</span></div>
+            <div class="badge deck-card deck-card-2" aria-hidden="true"><span class="badge-hello">HELLO</span></div>
+            <div class="badge deck-front" id="deck-front" aria-hidden="true">
+              <span class="badge-hello">HELLO</span>
+              <span class="badge-sub">my name is</span>
+              <div class="badge-name" id="badge-name">
+                <span class="marker write-in" id="deck-name">Dave</span>
+                <span class="their-name" id="their-name" hidden></span>
+              </div>
+              <div class="badge-foot"><span class="deck-lang" id="deck-lang">English</span></div>
             </div>
-            <div class="badge-foot"></div>
+            <svg class="seal" viewBox="0 0 200 200" aria-hidden="true">
+              <defs><path id="seal-ring" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+              <circle cx="100" cy="100" r="96" class="seal-disc"/>
+              <circle cx="100" cy="100" r="56" class="seal-inner"/>
+              <g class="seal-spin">
+                <text class="seal-text"><textPath href="#seal-ring" textLength="462">CERTIFIED DAVE &#8226; SOCIETY OF DAVES &#8226; EST. 2026 &#8226;</textPath></text>
+              </g>
+              <text class="seal-d" x="100" y="124" text-anchor="middle">D</text>
+            </svg>
           </div>
-
-          <form class="name-try" id="name-try" autocomplete="off">
-            <label for="name-input">Not a Dave? Write your name on the badge.</label>
-            <input id="name-input" name="name" type="text" maxlength="24" placeholder="Your first name" spellcheck="false">
-            <output id="name-verdict" for="name-input" aria-live="polite"></output>
-          </form>
-
-          <div class="badge-share">
-            <button class="share-button" type="button" id="badge-share">Share my badge</button>
-            <a class="share-button share-plain" id="badge-download" href="/api/badge?name=Dave&amp;download=1" download>Download</a>
-            <p class="share-status" id="badge-share-status" aria-live="polite"></p>
-          </div>
+          <p class="deck-count" aria-hidden="true"><span class="deck-count-n" id="deck-count">1</span> of 14 ways to be a Dave</p>
         </div>
       </section>
     </div>
@@ -511,16 +513,51 @@
   </main>
 
   <footer class="footer">
-    <div class="wrap">
-      <nav aria-label="Footer">
-        <a href="/blog/">Blog</a>
-        <a href="/gift">Give a gift</a>
-        <a href="/privacy">Privacy</a>
-        <a href="/terms">Terms</a>
-        <a href="/api/manage">Manage membership</a>
-        <a href="mailto:hello@societyofdaves.com">hello@societyofdaves.com</a>
-        <button type="button" data-cookie-settings>Cookie settings</button>
+    <div class="footer-marquee" aria-hidden="true">
+      <div class="footer-marquee-track">
+        <span>Dave</span><span>Dafydd</span><span>Davide</span><span>Dawid</span><span>Dávid</span><span>Kawika</span><span>Taavetti</span><span>Dovid</span>
+        <span>Dave</span><span>Dafydd</span><span>Davide</span><span>Dawid</span><span>Dávid</span><span>Kawika</span><span>Taavetti</span><span>Dovid</span>
+      </div>
+    </div>
+    <div class="wrap footer-main">
+      <div class="footer-sign">
+        <svg class="seal footer-seal" viewBox="0 0 200 200" aria-hidden="true">
+          <defs><path id="footer-seal-ring" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+          <circle cx="100" cy="100" r="96" class="seal-disc"/>
+          <circle cx="100" cy="100" r="56" class="seal-inner"/>
+          <g class="seal-spin">
+            <text class="seal-text"><textPath href="#footer-seal-ring" textLength="462">CERTIFIED DAVE &#8226; SOCIETY OF DAVES &#8226; EST. 2026 &#8226;</textPath></text>
+          </g>
+          <text class="seal-d" x="100" y="124" text-anchor="middle">D</text>
+        </svg>
+        <p class="footer-motto">One name.<br>Millions of members.<br><span>Stay Dave.</span></p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <div>
+          <h2>Read</h2>
+          <a href="/blog/">Blog</a>
+          <a href="/blog/what-does-the-name-dave-mean/">What Dave means</a>
+          <a href="/blog/famous-daves/">Famous Daves</a>
+        </div>
+        <div>
+          <h2>Members</h2>
+          <a href="/#join">Join for $1</a>
+          <a href="/gift">Give a gift</a>
+          <a href="/api/manage">Manage membership</a>
+        </div>
+        <div>
+          <h2>Small print</h2>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <button type="button" data-cookie-settings>Cookie settings</button>
+        </div>
+        <div>
+          <h2>Write to us</h2>
+          <a href="mailto:hello@societyofdaves.com">hello@societyofdaves.com</a>
+        </div>
       </nav>
+    </div>
+    <div class="wrap footer-base">
       <p>&copy; 2026 The Society of Daves. A parody, for fun. Not affiliated with any Dave, David, or TV channel mentioned on this site.</p>
     </div>
   </footer>

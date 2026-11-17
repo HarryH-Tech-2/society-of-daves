@@ -245,17 +245,15 @@ a:hover { color: var(--red-deep); }
   margin: 0 0 30px;
 }
 
-/* On phones: badge first, then the pitch and button, then the name game,
-   so the Join button stays near the top for ad traffic. */
+/* On phones: the badge deck first, then the pitch and the Join button. */
 @media (max-width: 860px) {
   .hero { grid-template-columns: 1fr; gap: 28px; padding-top: 8px; }
-  .hero .badge-stage { display: contents; }
-  .hero .badge { order: -1; justify-self: center; width: min(100%, 320px); }
+  .hero .deck-stage { order: -1; padding-bottom: 8px; }
+  .hero .deck { width: min(100% - 36px, 300px); }
   .hero .badge-name { min-height: 120px; padding: 12px; }
   .hero .badge-hello { font-size: 2.6rem; padding-top: 16px; }
-  .hero .marker { font-size: 4rem; }
-  .hero .name-try { order: 1; justify-self: start; }
-  .hero .badge-share { order: 2; justify-self: start; }
+  .hero .marker { --size: 4rem; }
+  .hero .seal { width: 96px; right: -26px; bottom: -22px; }
   .hero h1 { margin-bottom: 14px; }
   .hero .lede { font-size: var(--step-0); margin-bottom: 22px; }
 }
@@ -343,26 +341,75 @@ a:hover { color: var(--red-deep); }
 }
 .badge-name.corrected .marker { transform: rotate(-2deg) translateY(-18px); }
 
-.name-try {
-  width: min(100%, 420px);
-  display: grid;
-  gap: 8px;
+/* ---------- Hero: a deck of name badges for the world's Daves ---------- */
+
+.deck-stage { display: grid; justify-items: center; gap: 30px; }
+.deck {
+  position: relative;
+  width: min(100% - 40px, 440px);
+  perspective: 1400px;
 }
-.name-try label { font-weight: 700; font-size: var(--step--1); }
-.name-try input {
-  font: inherit;
-  font-size: var(--step-0);
-  padding: 12px 14px;
-  border: 2px solid var(--ink);
-  border-radius: 10px;
-  background: var(--paper);
-  width: 100%;
+.deck .badge { width: 100%; }
+.deck-front { position: relative; z-index: 2; }
+.deck-card {
+  position: absolute;
+  inset: 0;
+  background: var(--red-deep);
+  box-shadow: 0 18px 34px -20px rgba(40, 10, 10, 0.6);
 }
-.name-try output {
-  min-height: 1.6em;
+.deck-card .badge-hello { opacity: 0.35; }
+.deck-card-2 { transform: rotate(4deg) translate(14px, 6px); z-index: 1; }
+.deck-card-3 { transform: rotate(10deg) translate(30px, 16px); z-index: 0; background: #7E0E15; }
+
+/* Long names (Taavetti, Dàibhidh) shrink to fit: --len is set by app.js. */
+.deck .badge-name { container-type: inline-size; }
+.deck .marker {
+  --size: clamp(4rem, 13vw, 6.4rem);
+  font-size: min(var(--size), calc(150cqi / var(--len, 4)));
+  white-space: nowrap;
+}
+.deck-lang {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.deck-lang::before { content: "\2014\00a0"; }
+
+.seal {
+  position: absolute;
+  z-index: 3;
+  right: -38px;
+  bottom: -34px;
+  width: 132px;
+  rotate: 8deg;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25));
+  overflow: visible;
+}
+.seal-disc { fill: var(--highlight); stroke: var(--ink); stroke-width: 4; }
+.seal-inner { fill: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 3 5; }
+.seal-text { font-family: var(--sans); font-weight: 900; font-size: 19px; letter-spacing: 1px; fill: var(--ink); }
+.seal-d { font-family: var(--marker); font-size: 70px; fill: var(--red); }
+
+.deck-count {
+  margin: 0;
   font-size: var(--step--1);
-  font-weight: 600;
-  color: var(--biro);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+.deck-count-n {
+  display: inline-block;
+  min-width: 2ch;
+  padding: 1px 6px;
+  margin-right: 2px;
+  background: var(--ink);
+  color: var(--highlight);
+  border-radius: 4px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ---------- Section scaffolding ---------- */
@@ -557,15 +604,99 @@ mark {
 /* ---------- Footer ---------- */
 
 .footer {
+  position: relative;
+  overflow: hidden;
   background: var(--ink);
   color: var(--paper);
-  padding: 40px 0 48px;
   font-size: var(--step--1);
+  border-top: 6px solid var(--red);
 }
-.footer .wrap { display: grid; gap: 18px; }
-.footer nav { display: flex; flex-wrap: wrap; gap: 10px 24px; font-weight: 600; }
+
+/* A slow parade of the world's Daves in giant outlined letters. */
+.footer-marquee {
+  overflow: hidden;
+  padding: 18px 0 6px;
+  border-bottom: 2px solid #1F1F1F;
+  user-select: none;
+}
+.footer-marquee-track { display: flex; width: max-content; }
+.footer-marquee span {
+  font-weight: 900;
+  font-stretch: 125%;
+  font-size: clamp(3.4rem, 11vw, 8.5rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 2px #3A3A3A;
+  padding-right: 0.45em;
+}
+.footer-marquee span:nth-child(4n + 1) { color: var(--red); -webkit-text-stroke: 0; }
+.footer-marquee span:nth-child(4n + 3) { -webkit-text-stroke-color: var(--highlight); }
+
+.footer-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  gap: clamp(32px, 6vw, 80px);
+  align-items: start;
+  padding-top: clamp(40px, 6vw, 72px);
+  padding-bottom: clamp(32px, 5vw, 56px);
+}
+.footer-sign { display: flex; align-items: center; gap: 22px; }
+.footer-seal { position: static; flex: none; width: 120px; rotate: -8deg; filter: none; }
+.footer-motto {
+  margin: 0;
+  font-weight: 900;
+  font-stretch: 85%;
+  font-size: var(--step-2);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+.footer-motto span {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: var(--marker);
+  font-weight: 400;
+  font-size: 1.15em;
+  color: var(--highlight);
+  transform: rotate(-3deg);
+}
+
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, auto));
+  justify-content: space-between;
+  gap: 28px 32px;
+}
+.footer-nav div { display: grid; align-content: start; justify-items: start; gap: 10px; }
+.footer-nav h2 {
+  margin: 0 0 4px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.footer-nav a { font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
 .footer a:hover { color: var(--highlight); }
-.footer p { margin: 0; max-width: 70ch; color: #C9CED6; }
+.footer-nav a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+
+.footer-base { padding-bottom: 32px; }
+.footer-base p { margin: 0; padding-top: 20px; border-top: 1px solid #2A2A2A; color: #9AA1AC; }
+
+@media (min-width: 861px) { .footer-nav a, .footer-nav button { white-space: nowrap; } }
+@media (max-width: 860px) {
+  .footer-main { grid-template-columns: 1fr; }
+  .footer-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); justify-content: stretch; }
+}
+@media (max-width: 420px) {
+  .footer-seal { width: 92px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .footer-marquee-track { animation: ticker 60s linear infinite; }
+  .footer-seal { animation: none; }
+}
 
 /* ---------- Plain pages (welcome, privacy, terms) ---------- */
 
@@ -1012,18 +1143,28 @@ thead th { border-bottom: 2px solid var(--ink); font-weight: 800; }
 /* ---------- Motion (only for people who haven't asked for less) ---------- */
 
 @media (prefers-reduced-motion: no-preference) {
-  /* The hero badge slaps on like a sticker, then "Dave" is written in. */
-  .hero .badge {
-    animation: badge-slap 650ms cubic-bezier(.2, 1.5, .45, 1) 80ms backwards;
+  /* The hero deck: the cards slap down one after another, "Dave" is
+     written in, then app.js flips through the world's Daves. */
+  .hero .deck-front {
+    animation: badge-slap 650ms cubic-bezier(.2, 1.5, .45, 1) 380ms backwards;
     transition: transform 300ms cubic-bezier(.2, 1.4, .4, 1);
   }
-  .hero .badge:hover { transform: rotate(1.5deg) scale(1.03); }
-  .hero .badge .marker.write-in { animation-delay: 650ms; }
+  .hero .deck-card-3 { animation: card-in 500ms cubic-bezier(.2, 1.3, .45, 1) 60ms backwards; }
+  .hero .deck-card-2 { animation: card-in 500ms cubic-bezier(.2, 1.3, .45, 1) 200ms backwards; }
+  .hero .badge .marker.write-in { animation-delay: 950ms; }
+  .hero .badge .marker.rewrite { animation: write-in 520ms steps(12, end) both; }
   @keyframes badge-slap {
     0% { opacity: 0; transform: rotate(-14deg) scale(1.3) translateY(-30px); }
     55% { opacity: 1; }
     100% { opacity: 1; transform: rotate(-3deg) scale(1); }
   }
+  @keyframes card-in { from { opacity: 0; translate: 0 -40px; scale: 1.15; } }
+  .deck { animation: deck-bob 6s ease-in-out 1.4s infinite; }
+  @keyframes deck-bob { 50% { translate: 0 -10px; } }
+  .seal { animation: seal-in 600ms cubic-bezier(.2, 1.6, .4, 1) 1.5s backwards; }
+  @keyframes seal-in { from { opacity: 0; scale: 2.2; rotate: -40deg; } }
+  .seal-spin { animation: seal-spin 22s linear infinite; transform-origin: 100px 100px; }
+  @keyframes seal-spin { to { transform: rotate(360deg); } }
 
   /* The wall of Daves drifts slowly behind everything. */
   .dave-wall {
@@ -1126,12 +1267,12 @@ thead th { border-bottom: 2px solid var(--ink); font-weight: 800; }
   color: inherit;
   font: inherit;
   font-weight: 600;
-  text-decoration: underline;
+  text-decoration: none;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
   cursor: pointer;
 }
-.footer button[data-cookie-settings]:hover { color: var(--highlight); }
+.footer button[data-cookie-settings]:hover { color: var(--highlight); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) {
   .cookie-actions button { transition: none; }
 }

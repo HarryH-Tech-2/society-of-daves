@@ -62,13 +62,52 @@
   </main>
 
   <footer class="footer">
-    <div class="wrap">
-      <nav aria-label="Footer">
-        <a href="/privacy">Privacy</a>
-        <a href="/terms">Terms</a>
-        <a href="mailto:hello@societyofdaves.com">hello@societyofdaves.com</a>
-        <button type="button" data-cookie-settings>Cookie settings</button>
+    <div class="footer-marquee" aria-hidden="true">
+      <div class="footer-marquee-track">
+        <span>Dave</span><span>Dafydd</span><span>Davide</span><span>Dawid</span><span>Dávid</span><span>Kawika</span><span>Taavetti</span><span>Dovid</span>
+        <span>Dave</span><span>Dafydd</span><span>Davide</span><span>Dawid</span><span>Dávid</span><span>Kawika</span><span>Taavetti</span><span>Dovid</span>
+      </div>
+    </div>
+    <div class="wrap footer-main">
+      <div class="footer-sign">
+        <svg class="seal footer-seal" viewBox="0 0 200 200" aria-hidden="true">
+          <defs><path id="footer-seal-ring" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+          <circle cx="100" cy="100" r="96" class="seal-disc"/>
+          <circle cx="100" cy="100" r="56" class="seal-inner"/>
+          <g class="seal-spin">
+            <text class="seal-text"><textPath href="#footer-seal-ring" textLength="462">CERTIFIED DAVE &#8226; SOCIETY OF DAVES &#8226; EST. 2026 &#8226;</textPath></text>
+          </g>
+          <text class="seal-d" x="100" y="124" text-anchor="middle">D</text>
+        </svg>
+        <p class="footer-motto">One name.<br>Millions of members.<br><span>Stay Dave.</span></p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <div>
+          <h2>Read</h2>
+          <a href="/blog/">Blog</a>
+          <a href="/blog/what-does-the-name-dave-mean/">What Dave means</a>
+          <a href="/blog/famous-daves/">Famous Daves</a>
+        </div>
+        <div>
+          <h2>Members</h2>
+          <a href="/#join">Join for $1</a>
+          <a href="/gift">Give a gift</a>
+          <a href="/api/manage">Manage membership</a>
+        </div>
+        <div>
+          <h2>Small print</h2>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <button type="button" data-cookie-settings>Cookie settings</button>
+        </div>
+        <div>
+          <h2>Write to us</h2>
+          <a href="mailto:hello@societyofdaves.com">hello@societyofdaves.com</a>
+        </div>
       </nav>
+    </div>
+    <div class="wrap footer-base">
+      <p>&copy; 2026 The Society of Daves. A parody, for fun. Not affiliated with any Dave, David, or TV channel mentioned on this site.</p>
     </div>
   </footer>
   <script src="/consent.js" defer></script>
