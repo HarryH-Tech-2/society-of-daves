@@ -60,6 +60,7 @@ export const GOOGLE_TAG = `  <script async src="https://www.googletagmanager.com
     gtag('consent', 'default', ${consentState('denied', `, region: ${JSON.stringify(CONSENT_COUNTRIES).replace(/"/g, "'")}`)});
     gtag('consent', 'default', ${consentState('granted')});
     try { var c = localStorage.getItem('dave-cookies'); if (c) gtag('consent', 'update', c === 'granted' ? ${consentState('granted')} : ${consentState('denied')}); } catch (e) {}
+    if (/(?:^|;\\s*)dave-ga=off(?:;|$)/.test(document.cookie)) window['ga-disable-${GA_ID}'] = true;
     gtag('set', 'url_passthrough', true);
     gtag('set', 'ads_data_redaction', true);
     gtag('js', new Date());

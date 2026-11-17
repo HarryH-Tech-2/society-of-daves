@@ -17,6 +17,7 @@
     gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','IM','JE','GG','GI','CH'] });
     gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
     try { var c = localStorage.getItem('dave-cookies'); if (c) gtag('consent', 'update', c === 'granted' ? { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' } : { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' }); } catch (e) {}
+    if (/(?:^|;\s*)dave-ga=off(?:;|$)/.test(document.cookie)) window['ga-disable-G-0WLED48Q40'] = true;
     gtag('set', 'url_passthrough', true);
     gtag('set', 'ads_data_redaction', true);
     gtag('js', new Date());
@@ -60,6 +61,7 @@
     <h2 id="cookies">Cookies</h2>
     <p>Google Analytics and Google Ads use cookies to tell us how many people visit, which pages they read, and which adverts brought them here.</p>
     <p>If you're in the UK, the EU or EEA, or Switzerland, we ask before setting any of them. If you say no, Google gets only cookieless signals that can't identify you, such as a page having been viewed, and nothing is stored on your device except your answer. Everywhere else these cookies are on by default, and you can turn them off the same way.</p>
+    <p>If you visit from China or Singapore, we set a small cookie called <code>dave-ga</code> that turns Google Analytics off for your visit. It holds no information about you and expires after a day.</p>
     <p>Your answer is saved in your browser so we don't ask again. Change it any time with <button type="button" class="link-button" data-cookie-settings>Cookie settings</button>, also at the bottom of every page.</p>
 
     <h2>Your choices</h2>
