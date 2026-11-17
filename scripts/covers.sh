@@ -26,6 +26,7 @@ render how-popular-is-the-name-david "How many Davids are there in the world?"  
 render famous-daves                  "Famous Daves: the most notable people called Dave"   "HELLO"    "Famous"      famous
 render david-in-other-languages      "David in Welsh is Dafydd: David in other languages"  "HELLO"    "Dafydd"      languages
 render st-davids-day                 "St David's Day 2027: Monday 1 March"                 "HELLO"    "Dewi"        wales
+render nicknames-for-david           "Nicknames for David: Dave, Davy, Dai and the rest"   "HELLO"    "Davo"        nicknames
 render gift                          "Give a Dave a year of being a Dave"                   "HO HO HO" "Dave"        gift
 
 agent-browser close >/dev/null || true

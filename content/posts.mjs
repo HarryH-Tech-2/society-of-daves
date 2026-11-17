@@ -5,6 +5,84 @@
 
 export const posts = [
   {
+    slug: 'nicknames-for-david',
+    title: 'Nicknames for David: Dave, Davy, Dai and every other short form',
+    description: 'The nicknames for David: Dave, Davey, Davy and Davie in English, Dai and Daf in Welsh, plus old and international ones like Daw, Taavi and Dudel, and where each one comes from.',
+    date: '2026-11-17',
+    dek: 'Most Davids answer to at least three names. Here is where every one of them comes from.',
+    takeaways: [
+      'The most common nicknames for David are Dave, Davey, Davy and Davie. Dave is the one most people use today.',
+      'In Wales, David becomes Dai or Daf for short, and Dewi is the Welsh form used for Saint David.',
+      'Older and international short forms include Daw (medieval English), Taavi (Finnish and Estonian) and Dudel (Yiddish).',
+      'Informal versions include Davo, popular in Australia, and simply D.',
+    ],
+    body: `
+<p><strong>The most common nicknames for David are Dave, Davey, Davy and Davie.</strong> Dave is by far the most used today, and Davie is the traditional Scottish one. In Wales, a David is often Dai or Daf. Go back far enough, or travel far enough, and you'll find Daw, Taavi and Dudel too. Here's every short form of David the Society could verify, and where each one comes from.</p>
+
+<h2>The classic English nicknames for David</h2>
+<ul>
+  <li><strong>Dave.</strong> The default nickname, and the one on most name badges. It's so common that some people are given Dave as their full name; more on that in <a href="/blog/what-does-the-name-dave-mean/">what the name Dave means</a>.</li>
+  <li><strong>Davy.</strong> The older spelling, best known from <a href="https://en.wikipedia.org/wiki/Davy_Crockett">Davy Crockett</a>, the frontiersman born David Crockett in 1786, and from <a href="https://en.wikipedia.org/wiki/Davy_Jones_(musician)">Davy Jones</a> of the Monkees, who was born David Jones.</li>
+  <li><strong>Davey.</strong> The same name as Davy with an extra e. Neither spelling is more correct.</li>
+  <li><strong>Davie.</strong> The Scottish form, and the traditional nickname for David in Scotland.</li>
+</ul>
+
+<h2>Welsh nicknames for David</h2>
+<p>Wales has a long love of the name, thanks to its patron saint, so it's no surprise it has short forms of its own:</p>
+<ul>
+  <li><strong>Dai</strong> (said "die"). The classic Welsh nickname for David or Dafydd. The Welsh hurdler <a href="https://en.wikipedia.org/wiki/Dai_Greene">Dai Greene</a>, the 2011 world champion, was born David Greene.</li>
+  <li><strong>Daf.</strong> A short form of Dafydd, the Welsh spelling of David.</li>
+  <li><strong>Dewi.</strong> Strictly a Welsh form of the name rather than a nickname, and the one used for Saint David, Dewi Sant. See our <a href="/blog/st-davids-day/">guide to St David's Day</a>.</li>
+  <li><strong>Dewey.</strong> An English name that grew out of the Welsh Dewi.</li>
+  <li><strong>Taffy.</strong> Comes from Dafydd, but it's now mostly a slang word for any Welsh person, and many people find it offensive. Best not used for your Welsh colleague.</li>
+</ul>
+
+<h2>Old and international short forms of David</h2>
+<ul>
+  <li><strong>Daw.</strong> A medieval English nickname for David. It lives on in surnames such as Dawson, "son of Daw".</li>
+  <li><strong>Taavi.</strong> The Finnish and Estonian short form, from Taavetti in Finnish and Taavet in Estonian.</li>
+  <li><strong>Dudel.</strong> A Yiddish form of David, alongside the more formal Dovid.</li>
+</ul>
+<p>For the full forms in other languages, from Dafydd to Dawud to Kawika, see <a href="/blog/david-in-other-languages/">David in other languages</a>.</p>
+
+<h2>Informal and modern nicknames for David</h2>
+<p>Every Dave collects a few of these at school or at work. Nobody keeps an official list, but you'll hear them everywhere:</p>
+<ul>
+  <li><strong>Davo.</strong> The Australian version, made the Australian way: shorten the name, add an o.</li>
+  <li><strong>D.</strong> Just the initial. Even <a href="/blog/why-is-d-called-david-cyberpunk-edgerunners-2/">the David in Cyberpunk: Edgerunners 2</a> goes by it.</li>
+  <li><strong>Big Dave and Little Dave.</strong> The traditional solution when an office has two Daves, regardless of the Daves' actual sizes.</li>
+  <li><strong>Dave plus a surname initial.</strong> Dave B, Dave S. The solution when an office has three Daves.</li>
+</ul>
+
+<h2>Surnames that started with David</h2>
+<p>Several common surnames began as "son of David" in one form or another. <strong>Davidson</strong> and <strong>Davis</strong> both come from David, and <strong>Dawson</strong> comes from the medieval nickname Daw. So if you're a Dave Davis, you're about as Dave as it's possible to be.</p>
+
+<h2>Davey, Davy or Davie: which spelling is right?</h2>
+<p>All three are correct, and they're the same nickname. <strong>Davy</strong> is the older, famous spelling, <strong>Davey</strong> is the same name with an extra e, and <strong>Davie</strong> is the Scottish form. If you're writing to a particular David, use the one they use. If they haven't said, Dave is the safe choice.</p>
+
+<h2>When is David's name day?</h2>
+<p>In several countries that celebrate name days, David's falls on <strong>29 or 30 December</strong>. In Spain and Croatia it's <strong>1 March</strong>, the feast of Saint David of Wales. That makes 1 March a good day to do something nice for a David, whatever they call themselves, and a <a href="/gift">Society gift membership</a> can be scheduled to arrive that day.</p>
+`,
+    faqs: [
+      { q: 'What is a nickname for David?', a: 'The most common nicknames for David are Dave, Davey, Davy and Davie. Dave is the one most used today. In Wales, Dai and Daf are common, and informal versions include Davo and D.' },
+      { q: 'What is the Welsh nickname for David?', a: 'Dai is the classic Welsh nickname for David or Dafydd, and Daf is also used. Dewi is the Welsh form used for Saint David.' },
+      { q: 'What is the Scottish nickname for David?', a: 'Davie is the traditional Scottish short form of David.' },
+      { q: 'Is it Davey or Davy?', a: 'Both are correct and they are the same nickname. Davy is the older spelling, as in Davy Crockett, and Davey is the same name with an extra e. Davie is the Scottish form.' },
+      { q: 'What is the old nickname for David?', a: 'Daw was a medieval English nickname for David. It survives in the surname Dawson, meaning "son of Daw".' },
+      { q: 'Is Taffy a nickname for David?', a: 'It comes from Dafydd, the Welsh form of David, but Taffy is now mostly used as slang for any Welsh person, and many people find it offensive.' },
+      { q: 'When is David\'s name day?', a: 'In several countries that celebrate name days, David\'s falls on 29 or 30 December. In Spain and Croatia it is 1 March, the feast of Saint David.' },
+    ],
+    sources: [
+      ['David: related names, Behind the Name', 'https://www.behindthename.com/name/david/related'],
+      ['David, Behind the Name', 'https://www.behindthename.com/name/david'],
+      ['David (name), Wikipedia', 'https://en.wikipedia.org/wiki/David_(name)'],
+      ['Davy Crockett, Wikipedia', 'https://en.wikipedia.org/wiki/Davy_Crockett'],
+      ['Davy Jones (musician), Wikipedia', 'https://en.wikipedia.org/wiki/Davy_Jones_(musician)'],
+      ['Dai Greene, Wikipedia', 'https://en.wikipedia.org/wiki/Dai_Greene'],
+    ],
+  },
+
+  {
     slug: 'why-is-d-called-david-cyberpunk-edgerunners-2',
     cta: 'gift', // readers are mostly fans and gift-buyers, not Daves
     title: 'Why is D called David in Cyberpunk: Edgerunners 2?',
@@ -214,7 +292,7 @@ export const posts = [
 <p>By the 20th century David was one of the most common boys' names in the English-speaking world. In the United States it was <a href="/blog/how-popular-is-the-name-david/">the number one boys' name in 1960</a>.</p>
 
 <h2>When did David become Dave?</h2>
-<p>Common names collect nicknames, and David has collected several. <strong>Davy</strong> and <strong>Davie</strong> are the older ones; think of the frontiersman <a href="https://en.wikipedia.org/wiki/Davy_Crockett">Davy Crockett</a>, born in 1786. In Wales the traditional short form is <strong>Dai</strong>. <strong>Dave</strong> is the one most people use today, and it's the version on most office name badges. For the Daves who made the name famous, see <a href="/blog/famous-daves/">famous Daves</a>.</p>
+<p>Common names collect nicknames, and David has collected several. <strong>Davy</strong> and <strong>Davie</strong> are the older ones; think of the frontiersman <a href="https://en.wikipedia.org/wiki/Davy_Crockett">Davy Crockett</a>, born in 1786. In Wales the traditional short form is <strong>Dai</strong>. <strong>Dave</strong> is the one most people use today, and it's the version on most office name badges. Every short form is in <a href="/blog/nicknames-for-david/">nicknames for David</a>. For the Daves who made the name famous, see <a href="/blog/famous-daves/">famous Daves</a>.</p>
 
 <h2 id="dave-full-name">Is Dave a real name or just a nickname?</h2>
 <p>Both. Most Daves are Davids on their birth certificate, but some parents register Dave as the full name. The name-statistics site <a href="https://forebears.io/forenames/dave">Forebears</a> estimates that about 308,000 people worldwide have Dave as their actual given name, most of them in the US and Canada. That's a small club next to the roughly 13 million Davids (see <a href="/blog/how-popular-is-the-name-david/#how-many-davids">how many Davids there are</a>). Either way, the Society's position is clear: if you answer to Dave, you are a Dave. Article 2 of the <a href="/#bylaws">bylaws</a> covers Davids who insist on being called David.</p>
