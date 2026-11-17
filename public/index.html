@@ -513,15 +513,29 @@
   </main>
 
   <footer class="footer">
-    <div class="footer-marquee" aria-hidden="true">
-      <div class="footer-marquee-track">
-        <span>Dave</span><span>Dafydd</span><span>Davide</span><span>Dawid</span><span>Dávid</span><span>Kawika</span><span>Taavetti</span><span>Dovid</span>
-        <span>Dave</span><span>Dafydd</span><span>Davide</span><span>Dawid</span><span>Dávid</span><span>Kawika</span><span>Taavetti</span><span>Dovid</span>
-      </div>
-    </div>
     <div class="wrap footer-main">
-      <div class="footer-sign">
-        <svg class="seal footer-seal" viewBox="0 0 200 200" aria-hidden="true">
+      <div class="member-card" role="img" aria-label="A Society of Daves membership card. Name: Dave. Member number 3,700,001. Valid for life. Signed, Dave.">
+        <div class="member-card-head" aria-hidden="true">
+          <span>The Society of Daves</span>
+          <span class="member-card-kind">Member</span>
+        </div>
+        <div class="member-card-body" aria-hidden="true">
+          <svg class="member-photo" viewBox="0 0 80 100">
+            <rect width="80" height="100" rx="4" class="member-photo-bg"/>
+            <circle cx="40" cy="38" r="17" class="member-photo-ink"/>
+            <path d="M8 100 C 10 70, 70 70, 72 100 Z" class="member-photo-ink"/>
+            <path d="M31 46 q9 -5 18 0 q-9 3 -18 0 Z" class="member-photo-tash"/>
+          </svg>
+          <dl class="member-fields">
+            <div><dt>Name</dt><dd class="member-name">Dave</dd></div>
+            <div><dt>Member no.</dt><dd>3,700,001</dd></div>
+            <div><dt>Valid</dt><dd>For life</dd></div>
+          </dl>
+        </div>
+        <div class="member-card-foot" aria-hidden="true">
+          <span class="member-sign"><span>Dave</span></span>
+        </div>
+        <svg class="seal member-stamp" viewBox="0 0 200 200" aria-hidden="true">
           <defs><path id="footer-seal-ring" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
           <circle cx="100" cy="100" r="96" class="seal-disc"/>
           <circle cx="100" cy="100" r="56" class="seal-inner"/>
@@ -530,7 +544,7 @@
           </g>
           <text class="seal-d" x="100" y="124" text-anchor="middle">D</text>
         </svg>
-        <p class="footer-motto">One name.<br>Millions of members.<br><span>Stay Dave.</span></p>
+        <span class="member-shine" aria-hidden="true"></span>
       </div>
       <nav class="footer-nav" aria-label="Footer">
         <div>
